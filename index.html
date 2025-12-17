@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>战地诊所：从0开始的cod-galgame</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="bg-container">
+    <!-- 背景图 + 蒙版 -->
+    <img class="bg-img" id="bgImage" src="assets/pic/default.jpg" alt="战地诊所背景">
+    <div class="bg-mask"></div>
+
+    <!-- 用户名输入页 -->
+    <div class="username-page" id="usernamePage">
+      <h2 class="username-title">欢迎来到你的战地诊所</h2>
+      <input type="text" class="username-input" id="usernameInput" placeholder="医生签名栏">
+      <p class="username-tip">用户名用于存档/读档，导出的编码字符串请妥善保存～</p>
+      <div class="username-btn-group">
+        <button class="username-btn" id="newGameBtn">新游戏</button>
+        <button class="username-btn load-btn" id="loadGameBtn">读档继续</button>
+      </div>
+    </div>
+
+    <!-- 开屏第一页 -->
+    <div class="page" id="page1">
+      <h2 class="page-title">战地诊所 · 序章</h2>
+      <div class="page-text">
+        你曾是基地最受欢迎的外科医生，但由于<span class="highlight">基地人员大清洗</span>，
+        来自地球另一端的你被贴上「不符合安全要求」的标签，被迫离职。<br><br>
+        作为一名战地经验丰富的外科医生，你深知战地外伤与普通外伤的治疗逻辑天差地别——
+        多年来的专业经验，竟成了求职的阻碍。
+      </div>
+      <button class="next-btn" id="toPage2">开始游戏→</button>
+    </div>
+
+    <!-- 开屏第二页 -->
+    <div class="page" id="page2">
+      <h2 class="page-title">战地诊所 · 一切的开始</h2>
+      <div class="page-text">
+        既然无处可去，你索性<span class="highlight">在基地对面租了个小门面</span>，
+        开了家「战地诊所」——收费合理、无需排队，专治基地里的“老伤员”。<br><br>
+        最近三个月，刚从艰难任务归队的<span class="highlight">Ghost上尉</span>和<span class="highlight">König上校</span>，
+        成了你的常客。故事，就从这两位“门神”返回基地开始……
+      </div>
+      <button class="next-btn enter-btn" id="enterGame">进入诊所 →</button>
+    </div>
+
+    <!-- 主剧情区域 -->
+    <div class="save-load-group" id="saveLoadGroup">
+      <button class="save-load-btn" id="saveBtn">存档</button>
+      <button class="save-load-btn load" id="loadBtn">读档</button>
+      <button class="save-load-btn export" id="exportBtn">导出编码</button>
+      <button class="save-load-btn import" id="importBtn">导入编码</button>
+    </div>
+
+    <div class="title-area" id="mainTitle">
+      <h1 class="main-title">战地诊所：从0开始的cod-galgame</h1>
+      <p class="sub-title" id="userSubTitle">你的选择，决定他的信任值</p>
+      <div id="storyProgress" class="progress-title"></div>
+    </div>
+
+    <div class="story-area" id="storyArea">
+      <div class="story-text" id="storyText"></div>
+    </div>
+
+    <div class="options-area" id="optionsArea"></div>
+
+    <!-- 新增：声誉值显示区域 -->
+    <div class="status-area" id="statusArea">
+      <div class="status-item">
+        <span class="status-icon">☠️</span>
+        <span>Ghost好感：<span id="ghostFavor">0</span></span>
+      </div>
+      <div class="status-item">
+        <span class="status-icon">🐙</span>
+        <span>König好感：<span id="konigFavor">0</span></span>
+      </div>
+      <div class="status-item">
+        <span class="status-icon">🏥</span>
+        <span>诊所声誉：<span id="clinicRep">0</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 编解码弹窗 -->
+  <div class="code-modal" id="exportModal">
+    <h3 class="modal-title">存档编码（请复制保存）</h3>
+    <textarea class="code-input" id="exportCodeInput" readonly></textarea>
+    <div class="modal-btn-group">
+      <button class="modal-btn" id="copyExportBtn">复制编码</button>
+      <button class="modal-btn cancel" id="closeExportModal">关闭</button>
+    </div>
+    <p class="copy-tip" id="exportCopyTip"></p>
+  </div>
+
+  <div class="code-modal" id="importModal">
+    <h3 class="modal-title">粘贴存档编码</h3>
+    <textarea class="code-input" id="importCodeInput" placeholder="请粘贴上次获取的存档编码..."></textarea>
+    <div class="modal-btn-group">
+      <button class="modal-btn" id="confirmImportBtn">确认导入</button>
+      <button class="modal-btn cancel" id="closeImportModal">关闭</button>
+    </div>
+    <p class="copy-tip" id="importCopyTip"></p>
+  </div>
+
+  <!-- 调整JS引入顺序：main.js最后加载，确保所有依赖已定义 -->
+  <sc
+  ript src="js/game-state.js"></script>
+  <script src="js/save-load.js"></script>
+  <script src="js/story-templates.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
