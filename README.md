@@ -32,7 +32,36 @@ pnpm build
 
 # 预览生产版本
 pnpm preview
+
+# TypeScript 类型检查
+pnpm exec tsc --noEmit
 ```
+
+## CI/CD 流水线
+
+项目使用 GitLab CI/CD 进行自动化构建和检查：
+
+### 流水线阶段
+
+1. **install** - 安装依赖
+   - 使用 pnpm 安装所有依赖
+   - 缓存 node_modules 提高后续构建速度
+
+2. **check** - 代码检查
+   - TypeScript 类型检查 (`tsc --noEmit`)
+
+3. **build** - 构建检查
+   - 构建生产版本
+   - 验证构建产物
+
+### 触发条件
+
+流水线会在以下情况自动运行：
+- 推送到 `main` 分支
+- 创建 Merge Request
+- 创建标签 (Tags)
+
+配置文件: `.gitlab-ci.yml`
 
 ## 项目结构
 
