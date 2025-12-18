@@ -1,0 +1,14 @@
+{
+  "characters": [
+    {
+      "id": "ghost",
+      "name": "Ghost",
+      "initialFavorability": 0
+    },
+    {
+      "id": "konig",
+      "name": "König",
+      "initialFavorability": 0
+    }
+  ]
+}

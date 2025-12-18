@@ -1,0 +1,30 @@
+{
+  "ghost": {
+    "initial": [
+      { "min": 0, "max": 4, "text": "Doctor，我需要缝针。" },
+      { "min": 5, "max": 100, "text": "Morning {$username}，帮我看看伤口恢复情况。" }
+    ],
+    "responseToCheap": [
+      { "min": 0, "max": 4, "text": "很合理的解决方案，谢谢{$username}。" },
+      { "min": 5, "max": 100, "text": "你总能给出最划算的方案（眼尾微扬），{$username}。" }
+    ],
+    "responseToPrice": [
+      { "min": 0, "max": 4, "text": "比基地还贵？{$username}？" },
+      { "min": 5, "max": 100, "text": "（轻笑）你的技术值这个价，{$username}。" }
+    ],
+    "nightCrisis": [
+      { "min": 0, "max": 4, "text": "{$username}，能借用你的车吗？（语气冰冷）" },
+      { "min": 5, "max": 100, "text": "{$username}，能借用你的车吗？（语气比上次柔和）" }
+    ]
+  },
+  "konig": {
+    "evening": [
+      { "min": 0, "max": 4, "text": "晚上好，{$username}，我的大腿韧带似乎拉伤了..." },
+      { "min": 5, "max": 100, "text": "晚上好，{$username}～ 又来麻烦你了（电流声带笑意）" }
+    ],
+    "injuryResponse": [
+      { "min": 0, "max": 4, "text": "只是任务中紧急规避时拉伤的，{$username}。" },
+      { "min": 5, "max": 100, "text": "非常感谢，{$username}。" }
+    ]
+  }
+}
