@@ -1,0 +1,86 @@
+# GitLab CI/CD 配置文件
+# 战地诊所 - Vue 3 + Rspack + TypeScript 项目
+
+# 定义流水线阶段
+stages:
+  - install
+  - check
+  - build
+
+# 定义默认镜像
+image: node:20-alpine
+
+# 定义缓存策略
+cache:
+  key:
+    files:
+      - pnpm-lock.yaml
+  paths:
+    - node_modules/
+    - .pnpm-store/
+
+# 全局前置脚本
+before_script:
+  - corepack enable
+  - corepack prepare pnpm@latest --activate
+  - pnpm config set store-dir .pnpm-store
+
+# ==================== 阶段 1: 安装依赖 ====================
+install_dependencies:
+  stage: install
+  script:
+    - echo "📦 安装项目依赖..."
+    - pnpm install --frozen-lockfile
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 hour
+  only:
+    - main
+    - merge_requests
+    - tags
+
+# ==================== 阶段 2: 代码检查 ====================
+type_check:
+  stage: check
+  dependencies:
+    - install_dependencies
+  script:
+    - echo "🔍 TypeScript 类型检查..."
+    - pnpm exec tsc --noEmit
+  only:
+    - main
+    - merge_requests
+    - tags
+
+# ==================== 阶段 3: 构建检查 ====================
+build_check:
+  stage: build
+  dependencies:
+    - install_dependencies
+  script:
+    - echo "🏗️ 构建生产版本..."
+    - pnpm build
+    - echo "✅ 构建成功!"
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+  only:
+    - main
+    - merge_requests
+    - tags
+
+# ==================== 可选: 生产部署 ====================
+# deploy_production:
+#   stage: deploy
+#   dependencies:
+#     - build_check
+#   script:
+#     - echo "🚀 部署到生产环境..."
+#     # 在这里添加部署脚本，例如:
+#     # - rsync -avz dist/ user@server:/var/www/html/
+#     # - 或使用其他部署工具
+#   only:
+#     - main
+#   when: manual  # 手动触发部署
