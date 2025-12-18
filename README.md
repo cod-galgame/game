@@ -1,93 +1,159 @@
-# pixy-project
+# 战地诊所：从 0 开始的 cod-galgame
 
+基于 Vue 3 + Rspack + TypeScript 的文字冒险游戏。
 
+## 技术栈
 
-## Getting started
+- **Vue 3** - 使用 Composition API
+- **TypeScript** - 类型安全
+- **Pinia** - 状态管理
+- **Rspack** - 快速构建工具
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## 项目特点
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- ✅ 数据与逻辑完全分离 (JSON 数据文件)
+- ✅ TypeScript 类型安全
+- ✅ 模块化组件架构
+- ✅ 响应式 3:4 竖版布局
+- ✅ 好感度和声誉系统
+- ✅ 本地存档系统
 
-## Add your files
+## 开发命令
 
-* [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+```bash
+# 安装依赖
+pnpm install
+
+# 开发模式 (热更新)
+pnpm dev
+
+# 构建生产版本
+pnpm build
+
+# 预览生产版本
+pnpm preview
+```
+
+## 项目结构
 
 ```
-cd existing_repo
-git remote add origin https://jihulab.com/pixy-group/pixy-project.git
-git branch -M main
-git push -uf origin main
+src/
+├── components/          # Vue 组件
+│   ├── Username/       # 用户名输入
+│   ├── Story/          # 剧情展示
+│   └── StatusBar/      # 状态栏
+├── data/               # JSON 数据文件
+│   ├── characters.json # 角色配置
+│   ├── dialogs.json    # 对话文本
+│   └── story-nodes.json # 剧情节点
+├── stores/             # Pinia 状态管理
+├── types/              # TypeScript 类型定义
+├── utils/              # 工具函数
+└── views/              # 页面视图
 ```
 
-## Integrate with your tools
+## 如何添加新剧情
 
-* [Set up project integrations](https://jihulab.com/pixy-group/pixy-project/-/settings/integrations)
+### 1. 添加对话文本
 
-## Collaborate with your team
+编辑 `src/data/dialogs.json`:
 
-* [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+```json
+{
+  "ghost": {
+    "your_dialog_type": [
+      { "min": 0, "max": 4, "text": "低好感度对话" },
+      { "min": 5, "max": 100, "text": "高好感度对话，{$username}" }
+    ]
+  }
+}
+```
 
-## Test and Deploy
+### 2. 添加剧情节点
 
-Use the built-in continuous integration in GitLab.
+编辑 `src/data/story-nodes.json`:
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+```json
+{
+  "your_node_id": {
+    "id": "your_node_id",
+    "text": "剧情文本\\n{{ghost.your_dialog_type}}",
+    "options": [
+      {
+        "id": "option1",
+        "text": "选项 1",
+        "effect": { "ghost": 5, "reputation": 10 },
+        "record": "your_node_id_option1",
+        "nextNode": "next_node_id"
+      }
+    ]
+  }
+}
+```
 
-***
+## 数据格式说明
 
-# Editing this README
+### 占位符
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+- `{$username}` - 替换为玩家用户名
+- `{{ghost.initial}}` - 替换为 Ghost 的 initial 对话 (根据好感度匹配)
 
-## Suggestions for a good README
+### 好感度区间
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+对话会根据角色的当前好感度自动选择:
 
-## Name
-Choose a self-explaining name for your project.
+- 好感度 0-4: 使用 min=0, max=4 的对话
+- 好感度 5-100: 使用 min=5, max=100 的对话
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### 效果系统
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+选项的 `effect` 可以修改:
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+- `ghost`: Ghost 好感度变化
+- `konig`: König 好感度变化
+- `reputation`: 诊所声誉变化
+- `resetGame`: 重置游戏状态 (用于"重新开始游戏"选项)
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+### 选项显示条件
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+可以为选项添加 `visibilityCondition` 来控制显示条件：
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+```json
+{
+  "id": "special_option",
+  "text": "特殊选项 (需要 Ghost 好感度 ≥ 20)",
+  "visibilityCondition": {
+    "type": "favorability",
+    "character": "ghost",
+    "minValue": 20
+  },
+  "nextNode": "next_node"
+}
+```
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+**条件类型:**
+- `type: "favorability"` - 根据角色好感度判断 (需指定 `character`)
+- `type: "reputation"` - 根据诊所声誉判断
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+**值范围:**
+- `minValue` - 最小值 (可选)
+- `maxValue` - 最大值 (可选)
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+**示例:**
+- 只有好感度 ≥ 20 才显示: `{ "type": "favorability", "character": "ghost", "minValue": 20 }`
+- 只有声誉 < 50 才显示: `{ "type": "reputation", "maxValue": 49 }`
+- 好感度在 10-30 范围才显示: `{ "type": "favorability", "character": "konig", "minValue": 10, "maxValue": 30 }`
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+## 存档系统
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+- 自动保存到 LocalStorage
+- 存档键名: `battleClinic_v2_{username}`
+- 支持导出/导入 Base64 存档
+
+## 浏览器兼容性
+
+支持所有现代浏览器 (Chrome, Firefox, Safari, Edge)。
 
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+ISC

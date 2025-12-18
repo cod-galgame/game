@@ -1,0 +1,83 @@
+{
+  "day1_morning_clinic": {
+    "id": "day1_morning_clinic",
+    "text": "清晨的诊所刚开门，Ghost就推门进来了。\n他腰腹部缠着渗血的纱布，语气简洁：\n\"{{ghost.initial}}\"\n你凑近查看，伤口仅3cm长，是流弹擦伤的轻微伤。",
+    "options": [
+      {
+        "id": "optionA",
+        "text": "A：你这看起来只有3cm，减张带贴一下就行了。",
+        "effect": { "ghost": 5 },
+        "record": "day1_morning_clinic_A",
+        "nextNode": "day1_morning_clinic_ghost_response_cheap"
+      },
+      {
+        "id": "optionB",
+        "text": "B：缝针50磅。",
+        "effect": {},
+        "record": "day1_morning_clinic_B",
+        "nextNode": "day1_morning_clinic_ghost_response_price"
+      }
+    ]
+  },
+  "day1_morning_clinic_ghost_response_cheap": {
+    "id": "day1_morning_clinic_ghost_response_cheap",
+    "text": "Ghost看着你递来的减张带，眼神微顿（你能看到面罩下的眼尾松了一瞬）：\n\"{{ghost.responseToCheap}}\"\n他接过工具自行处理，临走时丢下一句：\n\"明天训练后来复查，{$username}。\"",
+    "options": [
+      {
+        "id": "nextA",
+        "text": "点头回应：\"好，明天见。\"",
+        "effect": {},
+        "record": "day1_morning_clinic_ghost_response_cheap_A",
+        "nextNode": "day1_evening_clinic_konig_visit"
+      }
+    ]
+  },
+  "day1_morning_clinic_ghost_response_price": {
+    "id": "day1_morning_clinic_ghost_response_price",
+    "text": "Ghost面具下的下颌线紧绷了一下，挑眉道：\n\"{{ghost.responseToPrice}}\"\n但他没多争执，掏出钱放在桌上：\n\"处理好，别感染，{$username}。\"",
+    "options": [
+      {
+        "id": "nextB",
+        "text": "接过钱：\"放心，比基地的手艺好。\"",
+        "effect": {},
+        "record": "day1_morning_clinic_ghost_response_price_A",
+        "nextNode": "day1_evening_clinic_konig_visit"
+      }
+    ]
+  },
+  "day1_evening_clinic_konig_visit": {
+    "id": "day1_evening_clinic_konig_visit",
+    "text": "夜幕降临，诊所快关门时，König推门进来。\n他头盔压得很低，声音带着电流声：\n\"{{konig.evening}}\"",
+    "options": [
+      {
+        "id": "konigA",
+        "text": "A：你平时壮的像牛，怎么还会拉伤？",
+        "effect": {},
+        "record": "day1_evening_clinic_konig_visit_A",
+        "nextNode": "day1_ending_demo"
+      },
+      {
+        "id": "konigB",
+        "text": "B：找我就对了，我专精运动损伤修复！",
+        "effect": { "konig": 5 },
+        "record": "day1_evening_clinic_konig_visit_B",
+        "nextNode": "day1_ending_demo"
+      }
+    ]
+  },
+  "day1_ending_demo": {
+    "id": "day1_ending_demo",
+    "text": "König点了点头：\n\"{{konig.injuryResponse}}\"\n\n第一天的剧情到此结束（Demo版本）。\n完整剧情将在后续更新中添加。",
+    "options": [
+      {
+        "id": "restart",
+        "text": "重新开始游戏",
+        "effect": {
+          "resetGame": true
+        },
+        "record": "",
+        "nextNode": "day1_morning_clinic"
+      }
+    ]
+  }
+}
