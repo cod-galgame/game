@@ -9,6 +9,11 @@
       "id": "konig",
       "name": "König",
       "initialFavorability": 0
+    },
+    {
+      "id": "npc",
+      "name": "NPC",
+      "initialFavorability": 0
     }
   ]
 }

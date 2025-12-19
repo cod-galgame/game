@@ -1,4 +1,4 @@
-import type { MessageProps } from '@/components/Message/Message.vue';
+import type { MessageProps } from '@/types/Message';
 
 let messageContainerInstance: any = null;
 

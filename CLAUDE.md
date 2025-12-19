@@ -87,7 +87,7 @@ Story progression is handled in `StoryOptions.vue`:
 2. **Execute effects** (modify favorability/reputation via `gameState` actions)
 3. **Record choice** (stored in `choiceRecords` for branching logic)
 4. **Resolve next node**:
-   - If option has `condition`, evaluate thresholds (e.g., reputation >= 70)
+   - If option has `branches`, evaluate conditions in order
    - Otherwise use `nextNode` directly
 5. **Update current node** via `gameState.setCurrentNode()`
 
@@ -138,12 +138,104 @@ The game supports two types of story nodes:
    - Player must select an option
    - No `nextNode` at root level
 
+### Condition DSL System
+
+The game uses a DSL (Domain Specific Language) for conditional branching, defined in `src/types/StoryNode.ts`.
+
+#### Compare Operators
+
+`CompareOp`: `eq` | `ne` | `gt` | `lt` | `gte` | `lte`
+
+#### Condition Fields
+
+`ConditionField` is statically derived from `characters.json`:
+- Character IDs (e.g., `ghost`, `konig`)
+- `reputation`
+
+#### Base Condition
+
+Single field comparison:
+```json
+{ "field": "reputation", "op": "gte", "value": 70 }
+{ "field": "ghost", "op": "lt", "value": 30 }
+```
+
+#### Composite Condition
+
+Combine conditions with `and` / `or`:
+```json
+{
+  "op": "and",
+  "conds": [
+    { "field": "ghost", "op": "gte", "value": 40 },
+    { "field": "konig", "op": "gte", "value": 25 }
+  ]
+}
+```
+
+#### Conditional Branching
+
+Use `branches` array in options. Conditions are evaluated in order, first match wins. Last branch without `cond` is the default:
+
+```json
+{
+  "id": "surgery",
+  "text": "Perform surgery",
+  "effect": {},
+  "branches": [
+    { "cond": { "field": "reputation", "op": "gte", "value": 70 }, "nextNode": "success" },
+    { "cond": { "field": "reputation", "op": "gte", "value": 50 }, "nextNode": "partial_success" },
+    { "nextNode": "failure" }
+  ]
+}
+```
+
+Complex branching with multiple characters:
+```json
+{
+  "branches": [
+    {
+      "cond": {
+        "op": "and",
+        "conds": [
+          { "field": "ghost", "op": "gte", "value": 40 },
+          { "field": "konig", "op": "gte", "value": 25 }
+        ]
+      },
+      "nextNode": "perfect_ending"
+    },
+    { "cond": { "field": "ghost", "op": "gte", "value": 30 }, "nextNode": "normal_ending" },
+    { "cond": { "field": "konig", "op": "gte", "value": 20 }, "nextNode": "normal_ending" },
+    { "nextNode": "bad_ending" }
+  ]
+}
+```
+
+#### Visibility Condition
+
+Control option visibility based on game state:
+```json
+{
+  "id": "secret_option",
+  "text": "Secret choice (high reputation only)",
+  "visibilityCondition": { "field": "reputation", "op": "gte", "value": 80 },
+  "nextNode": "secret_route"
+}
+```
+
+### Story Writing Workflow
+
 When adding new story content:
-1. Add dialog templates to `dialogs.json` first
-2. Reference them in `story-nodes.json` using `{{character.dialogType}}` syntax
-3. Break multi-line text into separate nodes connected via `nextNode`
-4. Use `effect` object for stat changes: `{ "ghost": 5, "reputation": 10 }`
-5. Use `condition` object for branching: `{ "type": "reputation", "thresholds": [...] }`
+
+1. **Add characters** (if new) to `characters.json`
+2. **Add dialog templates** to `dialogs.json` with favorability ranges
+3. **Create story nodes** in `story-nodes.json`:
+   - Use `{{character.dialogType}}` for dynamic dialog
+   - Use `{$username}` for player name
+   - Use `\n` for line breaks
+4. **Add effects** for stat changes: `{ "ghost": 5, "reputation": 10 }`
+5. **Add branches** for conditional routing using the DSL
+6. **Add visibilityCondition** to hide/show options based on state
 
 ### Save System
 

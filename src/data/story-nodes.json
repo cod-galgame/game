@@ -595,14 +595,11 @@
         "text": "立即准备手术",
         "effect": {},
         "record": "day11_midnight_clinic_ghost_critical_injury_A",
-        "condition": {
-          "type": "reputation",
-          "thresholds": [
-            { "min": 70, "nextNode": "day11_midnight_clinic_success_rescue" },
-            { "min": 50, "nextNode": "day11_midnight_clinic_rescue_with_sequela" },
-            { "min": 0, "nextNode": "day11_midnight_clinic_rescue_failure" }
-          ]
-        }
+        "branches": [
+          { "cond": { "field": "reputation", "op": "gte", "value": 70 }, "nextNode": "day11_midnight_clinic_success_rescue" },
+          { "cond": { "field": "reputation", "op": "gte", "value": 50 }, "nextNode": "day11_midnight_clinic_rescue_with_sequela" },
+          { "nextNode": "day11_midnight_clinic_rescue_failure" }
+        ]
       }
     ]
   },
@@ -654,15 +651,12 @@
         "text": "查看结局详情",
         "effect": {},
         "record": "day15_afternoon_clinic_final_epilogue_A",
-        "condition": {
-          "type": "favorability",
-          "thresholds": [
-            { "ghost_min": 40, "konig_min": 25, "nextNode": "day15_afternoon_clinic_perfect_ending" },
-            { "ghost_min": 30, "konig_min": 0, "nextNode": "day15_afternoon_clinic_normal_ending" },
-            { "ghost_min": 0, "konig_min": 20, "nextNode": "day15_afternoon_clinic_normal_ending" },
-            { "ghost_min": 0, "konig_min": 0, "nextNode": "day15_afternoon_clinic_regret_ending" }
-          ]
-        }
+        "branches": [
+          { "cond": { "op": "and", "conds": [{ "field": "ghost", "op": "gte", "value": 40 }, { "field": "konig", "op": "gte", "value": 25 }] }, "nextNode": "day15_afternoon_clinic_perfect_ending" },
+          { "cond": { "field": "ghost", "op": "gte", "value": 30 }, "nextNode": "day15_afternoon_clinic_normal_ending" },
+          { "cond": { "field": "konig", "op": "gte", "value": 20 }, "nextNode": "day15_afternoon_clinic_normal_ending" },
+          { "nextNode": "day15_afternoon_clinic_regret_ending" }
+        ]
       }
     ]
   },

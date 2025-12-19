@@ -2,13 +2,22 @@ const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const rspack = require('@rspack/core');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
-  mode: 'development',
+  mode: isProd ? 'production' : 'development',
   entry: './src/main.ts',
   output: {
-    filename: 'bundle.js',
+    filename: isProd ? '[name].[contenthash:8].js' : 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true
+  },
+  optimization: {
+    minimize: isProd,
+    minimizer: [
+      new rspack.SwcJsMinimizerRspackPlugin(),
+      new rspack.LightningCssMinimizerRspackPlugin()
+    ]
   },
   module: {
     rules: [
@@ -33,7 +42,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'vue-style-loader',
+          isProd ? rspack.CssExtractRspackPlugin.loader : 'vue-style-loader',
           'css-loader'
         ]
       },
@@ -52,8 +61,11 @@ module.exports = {
       __VUE_OPTIONS_API__: JSON.stringify(true),
       __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
       __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false)
+    }),
+    isProd && new rspack.CssExtractRspackPlugin({
+      filename: '[name].[contenthash:8].css'
     })
-  ],
+  ].filter(Boolean),
   resolve: {
     extensions: ['.ts', '.js', '.vue', '.json'],
     alias: {

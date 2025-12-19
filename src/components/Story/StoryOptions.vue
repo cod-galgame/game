@@ -15,11 +15,48 @@
 import { computed } from 'vue';
 import { useGameStateStore } from '@/stores/gameState';
 import { useStoryEngineStore } from '@/stores/storyEngine';
-import type { StoryOption } from '@/types/StoryNode';
-import type { CharacterState } from '@/types/Character';
+import type { StoryOption, Condition, CompareOp } from '@/types/StoryNode';
 
 const gameState = useGameStateStore();
 const storyEngine = useStoryEngineStore();
+
+// 获取字段值
+function getFieldValue(field: string): number {
+  if (field === 'reputation') {
+    return gameState.reputation;
+  }
+  // 其他字段视为角色好感度
+  return gameState.favorability[field as keyof typeof gameState.favorability] || 0;
+}
+
+// 比较操作
+function compare(left: number, op: CompareOp, right: number): boolean {
+  switch (op) {
+    case 'eq': return left === right;
+    case 'ne': return left !== right;
+    case 'gt': return left > right;
+    case 'lt': return left < right;
+    case 'gte': return left >= right;
+    case 'lte': return left <= right;
+    default: return false;
+  }
+}
+
+// 评估条件
+function evaluateCondition(cond: Condition): boolean {
+  if ('field' in cond) {
+    // 基础条件
+    const value = getFieldValue(cond.field);
+    return compare(value, cond.op, cond.value);
+  } else {
+    // 组合条件
+    if (cond.op === 'and') {
+      return cond.conds.every(c => evaluateCondition(c));
+    } else {
+      return cond.conds.some(c => evaluateCondition(c));
+    }
+  }
+}
 
 const options = computed(() => {
   const node = storyEngine.getCurrentNode(gameState.currentNodeId);
@@ -28,26 +65,7 @@ const options = computed(() => {
   // 过滤掉不满足显示条件的选项
   return allOptions.filter(option => {
     if (!option.visibilityCondition) return true;
-
-    const condition = option.visibilityCondition;
-    let currentValue: number;
-
-    if (condition.type === 'favorability') {
-      if (!condition.character) return true;
-      currentValue = gameState.favorability[condition.character as keyof CharacterState] || 0;
-    } else {
-      currentValue = gameState.reputation;
-    }
-
-    // 检查最小值和最大值
-    if (condition.minValue !== undefined && currentValue < condition.minValue) {
-      return false;
-    }
-    if (condition.maxValue !== undefined && currentValue > condition.maxValue) {
-      return false;
-    }
-
-    return true;
+    return evaluateCondition(option.visibilityCondition);
   });
 });
 
@@ -81,29 +99,30 @@ function handleOptionClick(option: StoryOption) {
 
   // 4. 处理动态跳转
   let nextNodeId = option.nextNode;
-  if (option.condition) {
-    nextNodeId = resolveConditionalNode(option.condition);
+  if (option.branches) {
+    nextNodeId = resolveBranches(option.branches);
   }
 
   // 5. 跳转到下一节点
-  gameState.setCurrentNode(nextNodeId);
+  if (nextNodeId) {
+    gameState.setCurrentNode(nextNodeId);
+  }
 }
 
-function resolveConditionalNode(condition: StoryOption['condition']): string {
-  if (!condition) return '';
+function resolveBranches(branches: StoryOption['branches']): string | undefined {
+  if (!branches) return undefined;
 
-  const value = condition.type === 'reputation'
-    ? gameState.reputation
-    : gameState.favorability[condition.character as keyof CharacterState] || 0;
-
-  // 按阈值从高到低匹配
-  const sorted = [...condition.thresholds].sort((a, b) => b.value - a.value);
-  for (const threshold of sorted) {
-    if (value >= threshold.value) {
-      return threshold.nextNode;
+  for (const branch of branches) {
+    // 无条件分支为默认分支
+    if (!branch.cond) {
+      return branch.nextNode;
+    }
+    // 评估条件
+    if (evaluateCondition(branch.cond)) {
+      return branch.nextNode;
     }
   }
-  return condition.thresholds[condition.thresholds.length - 1].nextNode;
+  return undefined;
 }
 </script>
 

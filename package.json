@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "rspack serve",
-    "build": "rspack build",
-    "preview": "rspack serve --mode production"
+    "build": "NODE_ENV=production rspack build",
+    "check": "tsc --noEmit",
+    "preview": "NODE_ENV=production rspack serve"
   },
   "keywords": [],
   "author": "",
