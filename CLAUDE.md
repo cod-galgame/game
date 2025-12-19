@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A visual novel/text adventure game (Galgame) set in a battlefield clinic theme. Built with Vue 3 + Rspack + TypeScript, featuring a data-driven architecture where story content is completely separated from game logic.
+A visual novel/text adventure game (Galgame) set in a battlefield clinic theme. Built with Vue 3 + Vite + TypeScript, featuring a data-driven architecture where story content is completely separated from game logic.
 
 ## Build & Development Commands
 
@@ -14,6 +14,9 @@ pnpm dev
 
 # Production build (outputs to dist/)
 pnpm build
+
+# TypeScript type checking (no emit)
+pnpm check
 
 # Preview production build
 pnpm preview
@@ -239,18 +242,19 @@ When adding new story content:
 
 ### Save System
 
-Saves use LocalStorage with key pattern: `battleClinic_v2_{username}`
+Saves use LocalStorage with key pattern: `battleClinic_v2_slot_{index}` (9 save slots available).
 
 **Critical functions** in `src/utils/saveSystem.ts`:
-- `saveGame()` - Serializes entire `gameState` store
-- `loadGame()` - Deserializes and returns GameState object
+- `saveToSlot(index)` / `loadFromSlot(index)` - Slot-based save/load
+- `getAllSlots()` - Returns all 9 save slot states
+- `deleteSlot(index)` - Clears a save slot
 - `exportSave()` / `importSave()` - Base64 encoding for cross-device transfer
 
 **Note**: The `v2_` prefix indicates save format version. Incompatible with old version saves.
 
 ## TypeScript Path Alias
 
-`@/` resolves to `src/` (configured in both `tsconfig.json` and `rspack.config.js`).
+`@/` resolves to `src/` (configured in both `tsconfig.json` and `vite.config.ts`).
 
 Always use `@/` imports for consistency:
 ```typescript
