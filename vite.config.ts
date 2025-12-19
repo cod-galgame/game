@@ -9,11 +9,11 @@ export default defineConfig(({ command }) => ({
     vue(),
     vueDevtools(),
     // Only encrypt in production build to keep dev fast
-    command === 'build' && encryptJsonPlugin()
+    command === "build" && encryptJsonPlugin(),
   ].filter(Boolean),
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      "@": path.resolve(__dirname, "src"),
     },
   },
   server: {
@@ -21,6 +21,6 @@ export default defineConfig(({ command }) => ({
     open: true,
   },
   build: {
-    outDir: 'dist',
+    outDir: "dist",
   },
-});
+}));
