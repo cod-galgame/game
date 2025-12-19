@@ -138,8 +138,6 @@ The game supports two types of story nodes:
    - Player must select an option
    - No `nextNode` at root level
 
-**Important**: Never use `\n` in text fields. Each line should be a separate node with `nextNode` linking them together.
-
 When adding new story content:
 1. Add dialog templates to `dialogs.json` first
 2. Reference them in `story-nodes.json` using `{{character.dialogType}}` syntax

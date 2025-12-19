@@ -18,7 +18,10 @@ export function renderStoryText(template: string): string {
     const dialogs = storyEngine.dialogs[charId]?.[dialogType];
     if (!dialogs) return match;
 
-    const favorability = gameState.favorability[charId as keyof CharacterState];
+    // NPC对话不依赖好感度，使用默认值0；角色对话使用实际好感度
+    const favorability = charId === 'npc'
+      ? 0
+      : (gameState.favorability[charId as keyof CharacterState] ?? 0);
     const dialogText = matchDialog(dialogs, favorability);
 
     // 递归处理对话文本中可能包含的 {$username}
