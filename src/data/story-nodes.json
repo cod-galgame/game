@@ -54,28 +54,653 @@
         "text": "A：你平时壮的像牛，怎么还会拉伤？",
         "effect": {},
         "record": "day1_evening_clinic_konig_visit_A",
-        "nextNode": "day1_ending_demo"
+        "nextNode": "day1_evening_clinic_konig_injury_response_a"
       },
       {
         "id": "konigB",
         "text": "B：找我就对了，我专精运动损伤修复！",
         "effect": { "konig": 5 },
         "record": "day1_evening_clinic_konig_visit_B",
-        "nextNode": "day1_ending_demo"
+        "nextNode": "day1_evening_clinic_konig_injury_response_b"
       }
     ]
   },
-  "day1_ending_demo": {
-    "id": "day1_ending_demo",
-    "text": "König点了点头：\n\"{{konig.injuryResponse}}\"\n\n第一天的剧情到此结束（Demo版本）。\n完整剧情将在后续更新中添加。",
+  "day1_evening_clinic_konig_injury_response_a": {
+    "id": "day1_evening_clinic_konig_injury_response_a",
+    "text": "König身体僵硬了一下，低声说：\n\"{{konig.injuryResponse}}\"\n你为他涂抹了镇痛药膏，他道谢后匆匆离开。\n（提示：{$username}错过末班车，被迫睡在诊所）",
+    "options": [
+      {
+        "id": "nightA",
+        "text": "收拾休息，准备过夜",
+        "effect": {},
+        "record": "day1_evening_clinic_konig_injury_response_a_A",
+        "nextNode": "day1_midnight_clinic_crisis_alert"
+      }
+    ]
+  },
+  "day1_evening_clinic_konig_injury_response_b": {
+    "id": "day1_evening_clinic_konig_injury_response_b",
+    "text": "头盔里传来轻笑，电流声都柔和了：\n\"{{konig.injuryResponse}}\"\n他主动说明是任务拉伤，治疗后提醒：\n\"{{konig.nightReminder}}\"",
+    "options": [
+      {
+        "id": "nightB",
+        "text": "笑着回应：\"多谢提醒，晚安。\"",
+        "effect": {},
+        "record": "day1_evening_clinic_konig_injury_response_b_A",
+        "nextNode": "day1_midnight_clinic_crisis_alert"
+      }
+    ]
+  },
+  "day1_midnight_clinic_crisis_alert": {
+    "id": "day1_midnight_clinic_crisis_alert",
+    "text": "深夜的尖叫声划破夜空，{$username}惊醒后抓起医疗箱冲出门。\n东南方向火光冲天，老爷车打不着火时，Ghost跑来（语气比上次柔和）：\n\"{{ghost.nightCrisis}}\"",
+    "options": [
+      {
+        "id": "carA",
+        "text": "A：我要去救人，开到现场再借你",
+        "effect": { "ghost": 5, "reputation": 5 },
+        "record": "day1_midnight_clinic_crisis_alert_A",
+        "nextNode": "day1_midnight_clinic_ghost_car_response_a"
+      },
+      {
+        "id": "carB",
+        "text": "B：打不着火，你能开就借你",
+        "effect": {},
+        "record": "day1_midnight_clinic_crisis_alert_B",
+        "nextNode": "day1_midnight_clinic_ghost_car_response_b"
+      }
+    ]
+  },
+  "day1_midnight_clinic_ghost_car_response_a": {
+    "id": "day1_midnight_clinic_ghost_car_response_a",
+    "text": "Ghost看着你的医疗箱，点头道（语气带了点温度）：\n\"{{ghost.carResponseA}}\"",
+    "options": [
+      {
+        "id": "goSceneA",
+        "text": "一起出发前往现场",
+        "effect": {},
+        "record": "day1_midnight_clinic_ghost_car_response_a_A",
+        "nextNode": "day1_midnight_scene_konig_arrive"
+      }
+    ]
+  },
+  "day1_midnight_clinic_ghost_car_response_b": {
+    "id": "day1_midnight_clinic_ghost_car_response_b",
+    "text": "Ghost绕车检查一圈：\n\"{{ghost.carResponseB}}\"",
+    "options": [
+      {
+        "id": "goSceneB",
+        "text": "递过钥匙：\"路上小心，我随后就到\"",
+        "effect": {},
+        "record": "day1_midnight_clinic_ghost_car_response_b_A",
+        "nextNode": "day1_midnight_scene_konig_arrive"
+      }
+    ]
+  },
+  "day1_midnight_scene_konig_arrive": {
+    "id": "day1_midnight_scene_konig_arrive",
+    "text": "你们抵达现场，König{{konig.sceneGreeting}}\n一个光脚小男孩跑过来哭着说：\n\"{{npc.boyPain}}\"",
+    "options": [
+      {
+        "id": "checkBoy",
+        "text": "立刻蹲下为他检查",
+        "effect": {},
+        "record": "day1_midnight_scene_konig_arrive_A",
+        "nextNode": "day1_midnight_scene_ghost_medical_check"
+      }
+    ]
+  },
+  "day1_midnight_scene_ghost_medical_check": {
+    "id": "day1_midnight_scene_ghost_medical_check",
+    "text": "你检查后排除颅内损伤，男孩挠着后腰说：\n\"这里好痒，有东西硌着...{$username}...\"\n你撩起睡衣，看到贴卡通贴纸的黑色装置：\n\"{{npc.bombTimer}}\"\nGhost立刻靠过来：\n\"{{ghost.medicalCheck}}\"",
+    "options": [
+      {
+        "id": "calmDown",
+        "text": "保持冷静，准备应对危机",
+        "effect": {},
+        "record": "day1_midnight_scene_ghost_medical_check_A",
+        "nextNode": "day1_midnight_scene_ghost_bomb_crisis"
+      }
+    ]
+  },
+  "day1_midnight_scene_ghost_bomb_crisis": {
+    "id": "day1_midnight_scene_ghost_bomb_crisis",
+    "text": "König将你护在身后，倒计时加速到00:05！\n你翻出工具喊：\n\"König，固定他的身体！{$username}能处理！\"\nGhost立刻冲过来指导：\n\"{{ghost.bombCrisis}}\"",
+    "options": [
+      {
+        "id": "trustGhost",
+        "text": "信任Ghost，剪黑色电源接口",
+        "effect": { "reputation": 10, "konig": 5, "ghost": 3 },
+        "record": "day1_midnight_scene_ghost_bomb_crisis_A",
+        "nextNode": "day1_midnight_scene_ghost_crisis_end"
+      },
+      {
+        "id": "wrongChoice",
+        "text": "慌乱中误触红色电容（坏结局）",
+        "effect": {},
+        "record": "day1_midnight_scene_ghost_bomb_crisis_B",
+        "nextNode": "day1_midnight_scene_ghost_bad_ending"
+      }
+    ]
+  },
+  "day1_midnight_scene_ghost_crisis_end": {
+    "id": "day1_midnight_scene_ghost_crisis_end",
+    "text": "倒计时停在00:02！危机解除。\nKönig拍着你的后背说：\n\"干得好，{$username}。\"\nGhost走到你身边：\n\"{{ghost.crisisEnd}}\"",
+    "options": [
+      {
+        "id": "backClinic",
+        "text": "和König返回诊所",
+        "effect": {},
+        "record": "day1_midnight_scene_ghost_crisis_end_A",
+        "nextNode": "day2_morning_clinic_ghost_aftermath_car_a"
+      }
+    ]
+  },
+  "day1_midnight_scene_ghost_bad_ending": {
+    "id": "day1_midnight_scene_ghost_bad_ending",
+    "text": "你触到红色电容，装置爆炸！\n模糊中看到König扑过来护住你，Ghost也冲了过来...\n（坏结局：{$username}一切回到原点）",
     "options": [
       {
         "id": "restart",
         "text": "重新开始游戏",
-        "effect": {
-          "resetGame": true
-        },
-        "record": "",
+        "effect": { "resetGame": true },
+        "record": "day1_midnight_scene_ghost_bad_ending_A",
+        "nextNode": "day1_morning_clinic"
+      }
+    ]
+  },
+  "day2_morning_clinic_ghost_aftermath_car_a": {
+    "id": "day2_morning_clinic_ghost_aftermath_car_a",
+    "text": "清晨诊所开门，你的老爷车停在门口，引擎盖还带着余温。Ghost靠在车门上，兜帽遮住半张脸，手里捏着一张便签。他主动上前，声音比平时柔和：\n\"{{ghost.aftermathCarA}}\"\n他递过便签，上面是潦草的字迹：\n\"三年前拆弹小组的制式装置，电源接口都在右侧，{$username}。\"",
+    "options": [
+      {
+        "id": "A1",
+        "text": "A1：\"你当时的判断是对的，这种装置确实该优先剪电源\"",
+        "effect": { "ghost": 1, "reputation": 5 },
+        "record": "day2_morning_clinic_ghost_aftermath_car_a_A",
+        "nextNode": "day2_morning_clinic_ghost_unlock_memory"
+      },
+      {
+        "id": "A2",
+        "text": "A2：\"多谢修车，这便签我收下了\"",
+        "effect": {},
+        "record": "day2_morning_clinic_ghost_aftermath_car_a_B",
+        "nextNode": "day2_evening_clinic_konig_night_visit"
+      }
+    ]
+  },
+  "day2_morning_clinic_ghost_unlock_memory": {
+    "id": "day2_morning_clinic_ghost_unlock_memory",
+    "text": "Ghost喉结动了动，突然说：\n\"{{ghost.unlockMemory}}\"",
+    "options": [
+      {
+        "id": "askMore",
+        "text": "轻声问：\"后来呢？\"",
+        "effect": { "ghost": 2 },
+        "record": "day2_morning_clinic_ghost_unlock_memory_A",
+        "nextNode": "day2_evening_clinic_konig_night_visit"
+      }
+    ]
+  },
+  "day2_evening_clinic_konig_night_visit": {
+    "id": "day2_evening_clinic_konig_night_visit",
+    "text": "当晚König来诊所复诊，卸下头盔——他坐在诊疗椅上，手指无意识摩挲着护臂：\n\"{{konig.nightVisit}}\"",
+    "options": [
+      {
+        "id": "A",
+        "text": "A：\"他看起来不像会拿平民生命冒险的人\"",
+        "effect": { "konig": 3, "reputation": 5 },
+        "record": "day2_evening_clinic_konig_night_visit_A",
+        "nextNode": "day2_evening_clinic_konig_reveal_clue"
+      },
+      {
+        "id": "B",
+        "text": "B：\"基地的指控有证据吗？\"",
+        "effect": { "konig": 1, "reputation": 3 },
+        "record": "day2_evening_clinic_konig_night_visit_B",
+        "nextNode": "day2_evening_clinic_konig_reveal_detail"
+      },
+      {
+        "id": "C",
+        "text": "C：\"这和我没关系，我只负责治伤\"",
+        "effect": { "konig": -2, "reputation": -5 },
+        "record": "day2_evening_clinic_konig_night_visit_C",
+        "nextNode": "day2_night_clinic_leo_warning"
+      }
+    ]
+  },
+  "day2_evening_clinic_konig_reveal_clue": {
+    "id": "day2_evening_clinic_konig_reveal_clue",
+    "text": "König抬头看你，眼神柔和了些：\n\"{{konig.revealClue}}\"",
+    "options": [
+      {
+        "id": "noteClue",
+        "text": "点头：\"我明白了\"",
+        "effect": {},
+        "record": "day2_evening_clinic_konig_reveal_clue_A",
+        "nextNode": "day2_night_clinic_leo_warning"
+      }
+    ]
+  },
+  "day2_evening_clinic_konig_reveal_detail": {
+    "id": "day2_evening_clinic_konig_reveal_detail",
+    "text": "König从口袋里掏出一张折叠的纸：\n\"{{konig.revealDetail}}\"",
+    "options": [
+      {
+        "id": "takeReport",
+        "text": "接过纸：\"我会收好的\"",
+        "effect": {},
+        "record": "day2_evening_clinic_konig_reveal_detail_A",
+        "nextNode": "day2_night_clinic_leo_warning"
+      }
+    ]
+  },
+  "day2_night_clinic_leo_warning": {
+    "id": "day2_night_clinic_leo_warning",
+    "text": "König离开后，Leo端着两杯咖啡走进来，神色凝重：\n\"{{npc.leoWarning}}\"",
+    "options": [
+      {
+        "id": "A",
+        "text": "A：\"我不在乎基地怎么说...凌晨我留着诊所门，他要是来躲，我能掩护他\"",
+        "effect": { "ghost": 2, "reputation": 10 },
+        "record": "day2_night_clinic_leo_warning_A",
+        "nextNode": "day3_midnight_clinic_ghost_visit"
+      },
+      {
+        "id": "B",
+        "text": "B：\"多一事不如少一事，他来我也假装没看见\"",
+        "effect": { "ghost": -2, "reputation": -5 },
+        "record": "day2_night_clinic_leo_warning_B",
+        "nextNode": "day3_morning_clinic_ghost_avoid"
+      },
+      {
+        "id": "C",
+        "text": "C：\"下次见面我会提醒他小心的，但诊所不能留他\"",
+        "effect": {},
+        "record": "day2_night_clinic_leo_warning_C",
+        "nextNode": "day3_morning_clinic_konig_rehab"
+      }
+    ]
+  },
+  "day3_midnight_clinic_ghost_visit": {
+    "id": "day3_midnight_clinic_ghost_visit",
+    "text": "凌晨三点，诊所后门被轻轻敲响。Ghost浑身是汗，左臂有一道深可见骨的划伤——是被刀划的，应该是躲避监视时与人冲突。他靠在门框上，面具沾染着灰尘：\n\"{{ghost.midnightVisit}}\"\n你立刻拉他进屋，打开应急灯：\n\"伤口很深，需要清创缝合，可能会留疤，{$username}。\"",
+    "options": [
+      {
+        "id": "A",
+        "text": "A：\"你跟我来...我不会告诉基地的\"",
+        "effect": { "ghost": 5, "reputation": 15 },
+        "record": "day3_midnight_clinic_ghost_visit_A",
+        "nextNode": "day3_midnight_clinic_ghost_reveal_truth"
+      },
+      {
+        "id": "B",
+        "text": "B：\"我帮你找Leo，他有渠道弄到基地的武器采购记录\"",
+        "effect": { "ghost": 4, "reputation": 15 },
+        "record": "day3_midnight_clinic_ghost_visit_B",
+        "nextNode": "day3_morning_clinic_leo_provide_clue"
+      },
+      {
+        "id": "C",
+        "text": "C：\"你该和基地说清楚，躲着不是办法\"",
+        "effect": { "ghost": 1, "reputation": -5 },
+        "record": "day3_midnight_clinic_ghost_visit_C",
+        "nextNode": "day3_morning_clinic_ghost_silent_leave"
+      }
+    ]
+  },
+  "day3_midnight_clinic_ghost_reveal_truth": {
+    "id": "day3_midnight_clinic_ghost_reveal_truth",
+    "text": "你带他走进夜班休息室，关上门时，他突然摘下面具——左脸有一道从眉骨延伸到下颌的疤痕。\n\"{{ghost.revealTruth}}\"",
+    "options": [
+      {
+        "id": "promise",
+        "text": "认真处理伤口：\"我会帮你保密\"",
+        "effect": {},
+        "record": "day3_midnight_clinic_ghost_reveal_truth_A",
+        "nextNode": "day3_morning_clinic_konig_rehab"
+      }
+    ]
+  },
+  "day3_morning_clinic_ghost_avoid": {
+    "id": "day3_morning_clinic_ghost_avoid",
+    "text": "Ghost避开了你的诊所，再也没有出现过，{$username}。",
+    "options": [
+      {
+        "id": "next",
+        "text": "继续",
+        "effect": {},
+        "record": "day3_morning_clinic_ghost_avoid_A",
+        "nextNode": "day3_morning_clinic_konig_rehab"
+      }
+    ]
+  },
+  "day3_morning_clinic_leo_provide_clue": {
+    "id": "day3_morning_clinic_leo_provide_clue",
+    "text": "Leo找到了Hawk的武器采购记录，交给了你，{$username}。",
+    "options": [
+      {
+        "id": "next",
+        "text": "收下记录",
+        "effect": {},
+        "record": "day3_morning_clinic_leo_provide_clue_A",
+        "nextNode": "day4_morning_clinic_leo_provide_evidence"
+      }
+    ]
+  },
+  "day3_morning_clinic_ghost_silent_leave": {
+    "id": "day3_morning_clinic_ghost_silent_leave",
+    "text": "Ghost沉默地离开，再也没有提起这件事，{$username}。",
+    "options": [
+      {
+        "id": "next",
+        "text": "继续",
+        "effect": {},
+        "record": "day3_morning_clinic_ghost_silent_leave_A",
+        "nextNode": "day3_morning_clinic_konig_rehab"
+      }
+    ]
+  },
+  "day3_morning_clinic_konig_rehab": {
+    "id": "day3_morning_clinic_konig_rehab",
+    "text": "次日König来做康复训练，你帮他拉伸韧带时，他突然闷哼一声——旧伤牵扯到了童年的疤痕。\n\"{{konig.rehabNextDay}}\"",
+    "options": [
+      {
+        "id": "A",
+        "text": "A：\"你的反应很正常...而且你现在保护了那个小男孩，你做到了\"",
+        "effect": { "konig": 5, "reputation": 5 },
+        "record": "day3_morning_clinic_konig_rehab_A",
+        "nextNode": "day3_morning_clinic_konig_teach_selfdefense"
+      },
+      {
+        "id": "B",
+        "text": "B：\"你现在的冷静和责任感，已经比过去的自己强太多了\"",
+        "effect": { "konig": 4, "reputation": 3 },
+        "record": "day3_morning_clinic_konig_rehab_B",
+        "nextNode": "day3_morning_clinic_konig_share_memory"
+      },
+      {
+        "id": "C",
+        "text": "C：\"别想太多，专注康复就好\"",
+        "effect": {},
+        "record": "day3_morning_clinic_konig_rehab_C",
+        "nextNode": "day3_noon_clinic_hawk_visit"
+      }
+    ]
+  },
+  "day3_morning_clinic_konig_teach_selfdefense": {
+    "id": "day3_morning_clinic_konig_teach_selfdefense",
+    "text": "König眼睛亮了起来，突然站起身：\n\"{{konig.teachSelfDefense}}\"",
+    "options": [
+      {
+        "id": "learn",
+        "text": "认真模仿：\"谢谢，很实用\"",
+        "effect": {},
+        "record": "day3_morning_clinic_konig_teach_selfdefense_A",
+        "nextNode": "day3_noon_clinic_hawk_visit"
+      }
+    ]
+  },
+  "day3_morning_clinic_konig_share_memory": {
+    "id": "day3_morning_clinic_konig_share_memory",
+    "text": "König分享了更多童年回忆，你们的关系更近了一步，{$username}。",
+    "options": [
+      {
+        "id": "next",
+        "text": "倾听",
+        "effect": {},
+        "record": "day3_morning_clinic_konig_share_memory_A",
+        "nextNode": "day3_noon_clinic_hawk_visit"
+      }
+    ]
+  },
+  "day3_noon_clinic_hawk_visit": {
+    "id": "day3_noon_clinic_hawk_visit",
+    "text": "中午，Hawk少校带着两名士兵走进诊所，双手背在身后，眼神轻蔑：\n\"{{npc.hawkVisit}}\"",
+    "options": [
+      {
+        "id": "A",
+        "text": "A：\"我是医生，只看伤，不问身份。我的患者隐私，不会向任何人透露\"",
+        "effect": { "ghost": 2, "konig": 2, "reputation": 10 },
+        "record": "day3_noon_clinic_hawk_visit_A",
+        "nextNode": "day4_morning_clinic_base_harass"
+      },
+      {
+        "id": "B",
+        "text": "B：\"保护患者隐私是我的职业义务，你没有证据，不能随便指控我通敌\"",
+        "effect": { "ghost": 3, "konig": 1, "reputation": 8 },
+        "record": "day3_noon_clinic_hawk_visit_B",
+        "nextNode": "day4_morning_clinic_konig_warn_base"
+      },
+      {
+        "id": "C",
+        "text": "C：\"我确实不知道他在哪，你们别来找我麻烦\"",
+        "effect": { "ghost": -3, "konig": -3, "reputation": -10 },
+        "record": "day3_noon_clinic_hawk_visit_C",
+        "nextNode": "day4_morning_clinic_reputation_drop"
+      }
+    ]
+  },
+  "day4_morning_clinic_base_harass": {
+    "id": "day4_morning_clinic_base_harass",
+    "text": "基地开始频繁骚扰诊所，但你始终坚守立场，{$username}。",
+    "options": [
+      {
+        "id": "next",
+        "text": "坚持",
+        "effect": {},
+        "record": "day4_morning_clinic_base_harass_A",
+        "nextNode": "day4_morning_clinic_leo_provide_evidence"
+      }
+    ]
+  },
+  "day4_morning_clinic_konig_warn_base": {
+    "id": "day4_morning_clinic_konig_warn_base",
+    "text": "König向基地高层警告了Hawk的行为，暂时缓解了压力，{$username}。",
+    "options": [
+      {
+        "id": "next",
+        "text": "等待",
+        "effect": {},
+        "record": "day4_morning_clinic_konig_warn_base_A",
+        "nextNode": "day4_morning_clinic_leo_provide_evidence"
+      }
+    ]
+  },
+  "day4_morning_clinic_reputation_drop": {
+    "id": "day4_morning_clinic_reputation_drop",
+    "text": "诊所声誉下降，患者越来越少，{$username}。",
+    "options": [
+      {
+        "id": "next",
+        "text": "挽回声誉",
+        "effect": {},
+        "record": "day4_morning_clinic_reputation_drop_A",
+        "nextNode": "day11_midnight_clinic_ghost_critical_injury"
+      }
+    ]
+  },
+  "day4_morning_clinic_leo_provide_evidence": {
+    "id": "day4_morning_clinic_leo_provide_evidence",
+    "text": "Leo拿着一份文件冲进诊所，脸色兴奋：\n\"{{npc.leoEvidence}}\"",
+    "options": [
+      {
+        "id": "A",
+        "text": "A：\"交给König，他在基地有信任的同僚，能帮着提交给上层\"",
+        "effect": { "konig": 5, "reputation": 5 },
+        "record": "day4_morning_clinic_leo_provide_evidence_A",
+        "nextNode": "day4_morning_clinic_konig_convince_colleague"
+      },
+      {
+        "id": "B",
+        "text": "B：\"给Ghost自己决定，这是他的事，我不能替他做选择\"",
+        "effect": { "ghost": 5, "reputation": 5 },
+        "record": "day4_morning_clinic_leo_provide_evidence_B",
+        "nextNode": "day4_morning_clinic_ghost_confront_hawk"
+      },
+      {
+        "id": "C",
+        "text": "C：\"先留在我这，等合适的时机再出手\"",
+        "effect": {},
+        "record": "day4_morning_clinic_leo_provide_evidence_C",
+        "nextNode": "day4_afternoon_clinic_health_inspection"
+      }
+    ]
+  },
+  "day4_morning_clinic_konig_convince_colleague": {
+    "id": "day4_morning_clinic_konig_convince_colleague",
+    "text": "König说服了基地同僚，准备提交证据，{$username}。",
+    "options": [
+      {
+        "id": "next",
+        "text": "等待结果",
+        "effect": {},
+        "record": "day4_morning_clinic_konig_convince_colleague_A",
+        "nextNode": "day11_midnight_clinic_ghost_critical_injury"
+      }
+    ]
+  },
+  "day4_morning_clinic_ghost_confront_hawk": {
+    "id": "day4_morning_clinic_ghost_confront_hawk",
+    "text": "Ghost拿着证据对峙Hawk，双方冲突升级，{$username}。",
+    "options": [
+      {
+        "id": "next",
+        "text": "支援Ghost",
+        "effect": {},
+        "record": "day4_morning_clinic_ghost_confront_hawk_A",
+        "nextNode": "day11_midnight_clinic_ghost_critical_injury"
+      }
+    ]
+  },
+  "day4_afternoon_clinic_health_inspection": {
+    "id": "day4_afternoon_clinic_health_inspection",
+    "text": "诊所迎来卫生检查，暂时搁置了证据的事，{$username}。",
+    "options": [
+      {
+        "id": "next",
+        "text": "配合检查",
+        "effect": {},
+        "record": "day4_afternoon_clinic_health_inspection_A",
+        "nextNode": "day11_midnight_clinic_ghost_critical_injury"
+      }
+    ]
+  },
+  "day11_midnight_clinic_ghost_critical_injury": {
+    "id": "day11_midnight_clinic_ghost_critical_injury",
+    "text": "凌晨两点，诊所大门被猛地撞开。Ghost踉跄着冲进来，腹部鲜血淋漓——是贯穿伤，伤口还在冒着血泡，右手无力地垂着，神经明显受损。\n\"{{ghost.criticalInjury}}\"",
+    "options": [
+      {
+        "id": "surgery",
+        "text": "立即准备手术",
+        "effect": {},
+        "record": "day11_midnight_clinic_ghost_critical_injury_A",
+        "condition": {
+          "type": "reputation",
+          "thresholds": [
+            { "min": 70, "nextNode": "day11_midnight_clinic_success_rescue" },
+            { "min": 50, "nextNode": "day11_midnight_clinic_rescue_with_sequela" },
+            { "min": 0, "nextNode": "day11_midnight_clinic_rescue_failure" }
+          ]
+        }
+      }
+    ]
+  },
+  "day11_midnight_clinic_success_rescue": {
+    "id": "day11_midnight_clinic_success_rescue",
+    "text": "你立刻启动应急手术：\n\"Leo，我去拿止血棉和麻醉剂！你来帮我固定他的身体！{$username}能行！\"\n你熟练地清创、缝合血管，用绝缘钳处理受损神经——之前König教你的防身术让你手部稳定性更强，Ghost透露的拆弹知识帮你避开了伤口附近的关键神经。手术进行了两个小时，黎明时分，Ghost的呼吸终于平稳。他醒来时，看着你布满血丝的眼睛，轻声说：\n\"{{ghost.successRescue}}\"",
+    "options": [
+      {
+        "id": "endCrisis",
+        "text": "守在床边：\"好好休息\"",
+        "effect": { "ghost": 20, "reputation": 100 },
+        "record": "day11_midnight_clinic_success_rescue_A",
+        "nextNode": "day15_afternoon_clinic_final_epilogue"
+      }
+    ]
+  },
+  "day11_midnight_clinic_rescue_with_sequela": {
+    "id": "day11_midnight_clinic_rescue_with_sequela",
+    "text": "手术成功，但Ghost留下了神经损伤的后遗症，{$username}。",
+    "options": [
+      {
+        "id": "next",
+        "text": "继续治疗",
+        "effect": {},
+        "record": "day11_midnight_clinic_rescue_with_sequela_A",
+        "nextNode": "day15_afternoon_clinic_final_epilogue"
+      }
+    ]
+  },
+  "day11_midnight_clinic_rescue_failure": {
+    "id": "day11_midnight_clinic_rescue_failure",
+    "text": "手术失败，Ghost重伤昏迷（普通结局），{$username}。",
+    "options": [
+      {
+        "id": "next",
+        "text": "等待苏醒",
+        "effect": {},
+        "record": "day11_midnight_clinic_rescue_failure_A",
+        "nextNode": "day15_afternoon_clinic_final_epilogue"
+      }
+    ]
+  },
+  "day15_afternoon_clinic_final_epilogue": {
+    "id": "day15_afternoon_clinic_final_epilogue",
+    "text": "两周后，诊所门口挂起了新的牌匾——「基地外指定医疗点」。Ghost康复后带着证据公开对峙Hawk，基地高层正式道歉。这天下午，Ghost和König同时走进诊所，手里分别拿着锦旗和家乡零食。\n\"141特遣队的体检安排在每周三，{$username}。\"\n\"骷髅团的康复训练定在周五如何？{$username}。\"\n你笑着合上病历本：\n\"按先来后到，{$username}。\"",
+    "options": [
+      {
+        "id": "viewEnding",
+        "text": "查看结局详情",
+        "effect": {},
+        "record": "day15_afternoon_clinic_final_epilogue_A",
+        "condition": {
+          "type": "favorability",
+          "thresholds": [
+            { "ghost_min": 40, "konig_min": 25, "nextNode": "day15_afternoon_clinic_perfect_ending" },
+            { "ghost_min": 30, "konig_min": 0, "nextNode": "day15_afternoon_clinic_normal_ending" },
+            { "ghost_min": 0, "konig_min": 20, "nextNode": "day15_afternoon_clinic_normal_ending" },
+            { "ghost_min": 0, "konig_min": 0, "nextNode": "day15_afternoon_clinic_regret_ending" }
+          ]
+        }
+      }
+    ]
+  },
+  "day15_afternoon_clinic_perfect_ending": {
+    "id": "day15_afternoon_clinic_perfect_ending",
+    "text": "完美结局：Ghost洗清冤屈，König解开心结，你的诊所成为基地指定医疗点，{$username}！",
+    "options": [
+      {
+        "id": "end",
+        "text": "结束游戏",
+        "effect": { "resetGame": true },
+        "record": "day15_afternoon_clinic_perfect_ending_A",
+        "nextNode": "day1_morning_clinic"
+      }
+    ]
+  },
+  "day15_afternoon_clinic_normal_ending": {
+    "id": "day15_afternoon_clinic_normal_ending",
+    "text": "普通结局：Ghost康复但选择离开，König继续留在基地，你仍在诊所行医，{$username}。",
+    "options": [
+      {
+        "id": "end",
+        "text": "结束游戏",
+        "effect": { "resetGame": true },
+        "record": "day15_afternoon_clinic_normal_ending_A",
+        "nextNode": "day1_morning_clinic"
+      }
+    ]
+  },
+  "day15_afternoon_clinic_regret_ending": {
+    "id": "day15_afternoon_clinic_regret_ending",
+    "text": "遗憾结局：Ghost远走他乡，König被调往其他基地，你失去了两位重要的朋友，{$username}。",
+    "options": [
+      {
+        "id": "end",
+        "text": "结束游戏",
+        "effect": { "resetGame": true },
+        "record": "day15_afternoon_clinic_regret_ending_A",
         "nextNode": "day1_morning_clinic"
       }
     ]

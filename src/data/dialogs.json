@@ -15,6 +15,46 @@
     "nightCrisis": [
       { "min": 0, "max": 4, "text": "{$username}，能借用你的车吗？（语气冰冷）" },
       { "min": 5, "max": 100, "text": "{$username}，能借用你的车吗？（语气比上次柔和）" }
+    ],
+    "carResponseA": [
+      { "min": 10, "max": 100, "text": "当然，我也是要去那里。我来帮你打火，{$username}。" }
+    ],
+    "carResponseB": [
+      { "min": 5, "max": 9, "text": "疏于养护，但能开。我先去排查危险，{$username}你跟紧。" },
+      { "min": 0, "max": 4, "text": "疏于养护，但能开。我先去，出了事别找我，{$username}。" }
+    ],
+    "medicalCheck": [
+      { "min": 10, "max": 100, "text": "我来教你拆，别慌，{$username}。" },
+      { "min": 5, "max": 9, "text": "小心点，那是炸弹！{$username}！" },
+      { "min": 0, "max": 4, "text": "别乱碰，自己找死别连累别人，{$username}。" }
+    ],
+    "bombCrisis": [
+      { "min": 10, "max": 100, "text": "剪黑色电容！相信我！{$username}！" },
+      { "min": 5, "max": 9, "text": "别碰红色电容！一碰就炸！{$username}！" },
+      { "min": 0, "max": 4, "text": "别碰红色电容，我可不想收你的尸，{$username}。" }
+    ],
+    "crisisEnd": [
+      { "min": 13, "max": 100, "text": "下次别这么慌，我在，{$username}。" },
+      { "min": 7, "max": 12, "text": "算你运气好，{$username}。" },
+      { "min": 1, "max": 6, "text": "下次注意点，别添乱，{$username}。" }
+    ],
+    "aftermathCarA": [
+      { "min": 10, "max": 100, "text": "车修好了，打火线圈换了新的，{$username}。" }
+    ],
+    "unlockMemory": [
+      { "min": 14, "max": 100, "text": "第一次拆弹时我剪错了线，队长替我挡了碎片。从那以后就记住了——电源永远是优先项，{$username}。" }
+    ],
+    "midnightVisit": [
+      { "min": 0, "max": 100, "text": "能处理一下吗？别让基地知道，{$username}。" }
+    ],
+    "revealTruth": [
+      { "min": 0, "max": 100, "text": "我在查Hawk在地下钱庄的交易，他和敌对势力有武器交易。这道伤，是他派来的人划的，{$username}。" }
+    ],
+    "criticalInjury": [
+      { "min": 0, "max": 100, "text": "基地…强制派我去拆弹…防护装备有问题…别让他们知道…只有你能救我…{$username}…" }
+    ],
+    "successRescue": [
+      { "min": 0, "max": 100, "text": "谢谢…我第一次，敢把后背交给别人，{$username}。" }
     ]
   },
   "konig": {
@@ -25,6 +65,54 @@
     "injuryResponse": [
       { "min": 0, "max": 4, "text": "只是任务中紧急规避时拉伤的，{$username}。" },
       { "min": 5, "max": 100, "text": "非常感谢，{$username}。" }
+    ],
+    "nightReminder": [
+      { "min": 5, "max": 100, "text": "晚上有情况，基地会有信号，{$username}。" }
+    ],
+    "sceneGreeting": [
+      { "min": 0, "max": 4, "text": "面色紧绑地接管局势，看向{$username}。" },
+      { "min": 5, "max": 100, "text": "看到{$username}后立刻迎上来：{$username}，你来了就好。" }
+    ],
+    "nightVisit": [
+      { "min": 5, "max": 100, "text": "那孩子的脑震荡没事了，基地的人已经送他回家。关于Ghost…基地三年前指控他'私藏爆炸装置核心部件'，其实是任务失败后，高层要找替罪羊，{$username}。" },
+      { "min": 0, "max": 4, "text": "关于Ghost…基地三年前有过对他的指控，{$username}。" }
+    ],
+    "revealClue": [
+      { "min": 8, "max": 100, "text": "你说得对。当时伤亡的平民是线人，Ghost为了保护她的家人不被报复，才选择沉默。这是她的代号，我们都欠她的，{$username}。" },
+      { "min": 3, "max": 7, "text": "你说得对。当时伤亡的平民是线人，Ghost为了保护她的家人不被报复，才选择沉默，{$username}。" }
+    ],
+    "revealDetail": [
+      { "min": 6, "max": 100, "text": "证据是篡改的任务报告，签名是Hawk少校。真正的报告早就被销毁了，{$username}。" },
+      { "min": 1, "max": 5, "text": "证据是篡改的任务报告，签名是Hawk少校，{$username}。" }
+    ],
+    "rehabNextDay": [
+      { "min": 0, "max": 100, "text": "小时候因为长得高，被同学锁在仓库里，那里有老鼠…我怕了很多年。上次误伤平民，我又想起了那个仓库，所有人都骂我'巨人废物'，{$username}。" }
+    ],
+    "teachSelfDefense": [
+      { "min": 0, "max": 100, "text": "我教你几个基础动作吧，{$username}，遇到危险时能用得上。这样能挣脱大多数束缚，记住要用巧劲。" }
+    ]
+  },
+  "npc": {
+    "boyPain": [
+      { "min": 0, "max": 100, "text": "{$username}，我的头好疼，像有虫子在咬..." },
+      { "min": 0, "max": 100, "text": "这里好痒，有东西硌着...{$username}..." }
+    ],
+    "bombTimer": [
+      { "min": 0, "max": 100, "text": "【倒计时：03:00】{$username}，快想想办法！" }
+    ],
+    "leoWarning": [
+      { "min": 0, "max": 100, "text": "我在基地的老战友说，Hawk少校在查你，{$username}，说你'包庇叛徒'。最近会有人来诊所监视，尤其是Ghost的行踪。" }
+    ],
+    "hawkVisit": [
+      { "min": 0, "max": 100, "text": "{$username}，我知道你在包庇Ghost。给你个机会，说出他的下落，我可以不追究你'通敌'的责任。" }
+    ],
+    "leoEvidence": [
+      { "min": 0, "max": 100, "text": "找到了！{$username}，这是三年前任务的原始报告，上面写着'平民伤亡由基地线人失误导致'，还有Hawk少校的亲笔签名——是篡改前的版本！" }
+    ],
+    "finalEpilogue": [
+      { "min": 0, "max": 100, "text": "141特遣队的体检安排在每周三，{$username}。" },
+      { "min": 0, "max": 100, "text": "骷髅团的康复训练定在周五如何？{$username}。" },
+      { "min": 0, "max": 100, "text": "按先来后到，{$username}。" }
     ]
   }
 }
