@@ -9,12 +9,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-
-export interface MessageProps {
-  content: string;
-  type?: 'success' | 'error' | 'info' | 'warning';
-  duration?: number;
-}
+import type { MessageProps } from '@/types/Message';
 
 const props = withDefaults(defineProps<MessageProps>(), {
   type: 'info',

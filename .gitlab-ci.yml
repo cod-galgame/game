@@ -47,7 +47,7 @@ type_check:
     - install_dependencies
   script:
     - echo "🔍 TypeScript 类型检查..."
-    - pnpm exec tsc --noEmit
+    - pnpm check
   only:
     - main
     - merge_requests
