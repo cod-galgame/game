@@ -1,4 +1,4 @@
-import type { MessageProps } from '@/types/Message';
+import type { MessageProps } from "@/types/Message";
 
 let messageContainerInstance: any = null;
 
@@ -11,8 +11,8 @@ export const Message = {
     if (messageContainerInstance) {
       messageContainerInstance.addMessage({
         content,
-        type: 'success',
-        duration
+        type: "success",
+        duration,
       } as MessageProps);
     }
   },
@@ -21,8 +21,8 @@ export const Message = {
     if (messageContainerInstance) {
       messageContainerInstance.addMessage({
         content,
-        type: 'error',
-        duration
+        type: "error",
+        duration,
       } as MessageProps);
     }
   },
@@ -31,8 +31,8 @@ export const Message = {
     if (messageContainerInstance) {
       messageContainerInstance.addMessage({
         content,
-        type: 'info',
-        duration
+        type: "info",
+        duration,
       } as MessageProps);
     }
   },
@@ -41,9 +41,9 @@ export const Message = {
     if (messageContainerInstance) {
       messageContainerInstance.addMessage({
         content,
-        type: 'warning',
-        duration
+        type: "warning",
+        duration,
       } as MessageProps);
     }
-  }
+  },
 };

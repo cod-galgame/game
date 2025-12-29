@@ -8,25 +8,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import type { MessageProps } from '@/types/Message';
+import { ref, onMounted } from "vue";
+import type { MessageProps } from "@/types/Message";
 
 const props = withDefaults(defineProps<MessageProps>(), {
-  type: 'info',
-  duration: 3000
+  type: "info",
+  duration: 3000,
 });
 
 const emit = defineEmits<{
-  close: []
+  close: [];
 }>();
 
 const visible = ref(false);
 
 const iconMap = {
-  success: '✓',
-  error: '✕',
-  info: 'ℹ',
-  warning: '⚠'
+  success: "✓",
+  error: "✕",
+  info: "ℹ",
+  warning: "⚠",
 };
 
 const icon = iconMap[props.type];
@@ -36,7 +36,7 @@ onMounted(() => {
   setTimeout(() => {
     visible.value = false;
     setTimeout(() => {
-      emit('close');
+      emit("close");
     }, 300); // 等待动画完成
   }, props.duration);
 });

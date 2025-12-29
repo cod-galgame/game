@@ -5,12 +5,14 @@
  */
 
 // Key for XOR - can be changed but must match between encrypt and decrypt
-const OBFUSCATION_KEY = 'P1XY_G4M3_2024_K3Y';
+const OBFUSCATION_KEY = "P1XY_G4M3_2024_K3Y";
 
 function xorCipher(input: string, key: string): string {
-  let result = '';
+  let result = "";
   for (let i = 0; i < input.length; i++) {
-    result += String.fromCharCode(input.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+    result += String.fromCharCode(
+      input.charCodeAt(i) ^ key.charCodeAt(i % key.length),
+    );
   }
   return result;
 }
@@ -25,7 +27,7 @@ export function encodeData(jsonString: string): string {
   // Convert to Base64
   const base64 = btoa(unescape(encodeURIComponent(xored)));
   // Reverse the string for additional obfuscation
-  return base64.split('').reverse().join('');
+  return base64.split("").reverse().join("");
 }
 
 /**
@@ -34,7 +36,7 @@ export function encodeData(jsonString: string): string {
  */
 export function decodeData<T>(encoded: string): T {
   // Reverse the string
-  const base64 = encoded.split('').reverse().join('');
+  const base64 = encoded.split("").reverse().join("");
   // Decode Base64
   const xored = decodeURIComponent(escape(atob(base64)));
   // XOR cipher to get original
