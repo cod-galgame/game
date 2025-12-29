@@ -7,10 +7,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useGameStateStore } from '@/stores/gameState';
-import { useStoryEngineStore } from '@/stores/storyEngine';
-import { renderStoryText } from '@/utils/templateRenderer';
+import { computed } from "vue";
+import { useGameStateStore } from "@/stores/gameState";
+import { useStoryEngineStore } from "@/stores/storyEngine";
+import { renderStoryText } from "@/utils/templateRenderer";
 
 const gameState = useGameStateStore();
 const storyEngine = useStoryEngineStore();
@@ -21,7 +21,7 @@ const paragraphs = computed(() => {
 
   const rendered = renderStoryText(node.text);
   // 按换行符分割成段落数组
-  return rendered.split('\n').filter(p => p.trim());
+  return rendered.split("\n").filter((p) => p.trim());
 });
 </script>
 

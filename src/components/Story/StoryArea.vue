@@ -3,8 +3,14 @@
     <div class="top-bar">
       <StatusBar />
       <div class="save-buttons">
-        <button class="save-btn" @click="$emit('save')">存档</button>
-        <button class="save-btn" @click="$emit('load')">读档</button>
+        <button class="save-btn" @click="$emit('save')">
+          存档
+          <i class="iconfont icon-baocun1" />
+        </button>
+        <button class="save-btn" @click="$emit('load')">
+          读档
+          <i style="font-size: 0.95em" class="iconfont icon-duqu" />
+        </button>
       </div>
     </div>
     <div class="story-content">
@@ -15,11 +21,11 @@
 </template>
 
 <script setup lang="ts">
-import StatusBar from '@/components/StatusBar/StatusBar.vue';
-import StoryText from './StoryText.vue';
-import StoryOptions from './StoryOptions.vue';
+import StatusBar from "@/components/StatusBar/StatusBar.vue";
+import StoryText from "./StoryText.vue";
+import StoryOptions from "./StoryOptions.vue";
 
-defineEmits(['save', 'load']);
+defineEmits(["save", "load"]);
 </script>
 
 <style scoped>
@@ -27,7 +33,7 @@ defineEmits(['save', 'load']);
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: url('/assets/pic/default.jpg') center/cover no-repeat;
+  background: url("/assets/pic/default.jpg") center/cover no-repeat;
 }
 
 .top-bar {
@@ -47,7 +53,7 @@ defineEmits(['save', 'load']);
   flex: 1;
   padding: 8px;
   font-size: 14px;
-  background: rgba(102, 126, 234, 0.8);
+  background: rgba(180, 131, 182, 0.8);
   color: white;
   border: none;
   border-radius: 6px;
@@ -56,7 +62,7 @@ defineEmits(['save', 'load']);
 }
 
 .save-btn:hover {
-  background: rgba(102, 126, 234, 1);
+  background: rgb(218, 153, 223);
 }
 
 .story-content {

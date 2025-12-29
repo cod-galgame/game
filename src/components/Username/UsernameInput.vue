@@ -1,7 +1,7 @@
 <template>
   <div class="username-container">
     <div class="username-card">
-      <h2 class="username-title">欢迎来到你的战地诊所</h2>
+      <h2 class="username-title">欢迎来到战地诊所，医生</h2>
       <input
         v-model="username"
         type="text"
@@ -17,30 +17,30 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const emit = defineEmits<{
-  submit: [username: string]
+  submit: [username: string];
 }>();
 
-const username = ref('');
-const error = ref('');
+const username = ref("");
+const error = ref("");
 
 function submitUsername() {
   const trimmed = username.value.trim();
 
   if (!trimmed) {
-    error.value = '请输入用户名';
+    error.value = "请输入用户名";
     return;
   }
 
   if (trimmed.length < 2) {
-    error.value = '用户名至少2个字符';
+    error.value = "用户名至少2个字符";
     return;
   }
 
-  error.value = '';
-  emit('submit', trimmed);
+  error.value = "";
+  emit("submit", trimmed);
 }
 </script>
 
@@ -50,12 +50,12 @@ function submitUsername() {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background: url('/assets/pic/default.jpg') center/cover;
+  background: url("/assets/pic/default.jpg") center/cover;
   position: relative;
 }
 
 .username-container::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
@@ -76,7 +76,7 @@ function submitUsername() {
 .username-title {
   font-size: 24px;
   margin-bottom: 30px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #d790c4, #dbb8d2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -107,7 +107,7 @@ function submitUsername() {
   width: 100%;
   padding: 15px;
   font-size: 18px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #cd9bc3 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 10px;

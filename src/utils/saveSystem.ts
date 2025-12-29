@@ -1,21 +1,25 @@
-import type { GameState } from '@/types/GameState';
+import type { GameState } from "@/types/GameState";
 
-const STORAGE_PREFIX = 'battleClinic_v2_slot_';
+const STORAGE_PREFIX = "battleClinic_v2_slot_";
 
 export interface SaveSlotData {
   gameState: GameState;
-  savedAt: number;        // 保存时间戳
-  previewText: string;    // 预览文本（最近的一行剧情）
+  savedAt: number; // 保存时间戳
+  previewText: string; // 预览文本（最近的一行剧情）
 }
 
 /**
  * 保存游戏到指定槽位
  */
-export function saveToSlot(slotIndex: number, state: GameState, previewText: string): void {
+export function saveToSlot(
+  slotIndex: number,
+  state: GameState,
+  previewText: string,
+): void {
   const slotData: SaveSlotData = {
     gameState: state,
     savedAt: Date.now(),
-    previewText
+    previewText,
   };
   const key = STORAGE_PREFIX + slotIndex;
   localStorage.setItem(key, JSON.stringify(slotData));
@@ -73,7 +77,7 @@ export function getAllSaves(): string[] {
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
     if (key && key.startsWith(STORAGE_PREFIX)) {
-      saves.push(key.replace(STORAGE_PREFIX, ''));
+      saves.push(key.replace(STORAGE_PREFIX, ""));
     }
   }
   return saves;

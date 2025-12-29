@@ -1,17 +1,17 @@
-import { defineStore } from 'pinia';
-import type { GameState } from '@/types/GameState';
-import type { CharacterState } from '@/types/Character';
+import { defineStore } from "pinia";
+import type { GameState } from "@/types/GameState";
+import type { CharacterState } from "@/types/Character";
 
-export const useGameStateStore = defineStore('gameState', {
+export const useGameStateStore = defineStore("gameState", {
   state: (): GameState => ({
-    username: '',
+    username: "",
     favorability: {
       ghost: 0,
-      konig: 0
+      konig: 0,
     },
     reputation: 0,
-    currentNodeId: 'day1_morning_clinic',
-    choiceRecords: {}
+    currentNodeId: "day1_morning_clinic",
+    choiceRecords: {},
   }),
 
   actions: {
@@ -36,10 +36,10 @@ export const useGameStateStore = defineStore('gameState', {
     },
 
     resetGame() {
-      this.username = '';
+      this.username = "";
       this.favorability = { ghost: 0, konig: 0 };
       this.reputation = 0;
-      this.currentNodeId = 'day1_morning_clinic';
+      this.currentNodeId = "day1_morning_clinic";
       this.choiceRecords = {};
     },
 
@@ -49,6 +49,6 @@ export const useGameStateStore = defineStore('gameState', {
       this.reputation = state.reputation;
       this.currentNodeId = state.currentNodeId;
       this.choiceRecords = { ...state.choiceRecords };
-    }
-  }
+    },
+  },
 });

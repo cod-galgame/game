@@ -283,7 +283,7 @@ GameView.vue (root orchestrator)
 - **No UI framework** - custom CSS only
 - **Scoped styles** in all `.vue` components
 - **3:4 aspect ratio** layout (mobile-first design)
-- **Gradient theme**: `linear-gradient(135deg, #667eea 0%, #764ba2 100%)`
+- **Gradient theme**: `linear-gradient(135deg, #c288a4ff 0%, #d0bcccff 100%)`
 
 Layout container in `App.vue` centers game content with max-width 600px on desktop, full-screen on mobile.
 

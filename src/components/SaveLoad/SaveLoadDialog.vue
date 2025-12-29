@@ -1,7 +1,9 @@
 <template>
   <div class="save-load-overlay" @click="$emit('close')">
     <div class="save-load-dialog" @click.stop>
-      <h2 class="dialog-title">{{ mode === 'save' ? '保存游戏' : '读取存档' }}</h2>
+      <h2 class="dialog-title">
+        {{ mode === "save" ? "保存游戏" : "读取存档" }}
+      </h2>
 
       <div class="slots-container">
         <div
@@ -12,12 +14,14 @@
         >
           <div class="slot-header">
             <span class="slot-number">槽位 {{ index + 1 }}</span>
-            <span v-if="slot" class="slot-time">{{ formatTime(slot.savedAt) }}</span>
+            <span v-if="slot" class="slot-time">{{
+              formatTime(slot.savedAt)
+            }}</span>
           </div>
 
           <div class="slot-content">
             <div class="slot-preview">
-              {{ slot ? slot.previewText : '空槽位' }}
+              {{ slot ? slot.previewText : "空槽位" }}
             </div>
 
             <div class="slot-actions">
@@ -26,13 +30,14 @@
                 class="action-btn save-btn"
                 @click="handleSave(index + 1)"
               >
-                保存
+                <i class="iconfont icon-baocun1" /> 保存
               </button>
               <button
                 v-else-if="slot"
                 class="action-btn load-btn"
                 @click="handleLoad(index + 1)"
               >
+                <i style="font-size: 0.95em" class="iconfont icon-duqu" />
                 读取
               </button>
               <button
@@ -53,20 +58,26 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue';
-import { useGameStateStore } from '@/stores/gameState';
-import { useStoryEngineStore } from '@/stores/storyEngine';
-import { getAllSlots, saveToSlot, loadFromSlot, deleteSlot, type SaveSlotData } from '@/utils/saveSystem';
-import { renderStoryText } from '@/utils/templateRenderer';
-import { Message } from '@/utils/message';
+import { ref, onMounted, computed } from "vue";
+import { useGameStateStore } from "@/stores/gameState";
+import { useStoryEngineStore } from "@/stores/storyEngine";
+import {
+  getAllSlots,
+  saveToSlot,
+  loadFromSlot,
+  deleteSlot,
+  type SaveSlotData,
+} from "@/utils/saveSystem";
+import { renderStoryText } from "@/utils/templateRenderer";
+import { Message } from "@/utils/message";
 
 const props = defineProps<{
-  mode: 'save' | 'load'
+  mode: "save" | "load";
 }>();
 
 const emit = defineEmits<{
-  close: []
-  load: [slotIndex: number]
+  close: [];
+  load: [slotIndex: number];
 }>();
 
 const gameState = useGameStateStore();
@@ -84,21 +95,21 @@ function loadSlots() {
 function formatTime(timestamp: number): string {
   const date = new Date(timestamp);
   const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
   return `${year}-${month}-${day} ${hours}:${minutes}`;
 }
 
 function getPreviewText(): string {
   const node = storyEngine.getCurrentNode(gameState.currentNodeId);
-  if (!node) return '未知位置';
+  if (!node) return "未知位置";
 
   const rendered = renderStoryText(node.text);
-  const lines = rendered.split('\n').filter(p => p.trim());
+  const lines = rendered.split("\n").filter((p) => p.trim());
   // 取最后一行作为预览
-  return lines[lines.length - 1] || '未知位置';
+  return lines[lines.length - 1] || "未知位置";
 }
 
 function handleSave(slotIndex: number) {
@@ -112,7 +123,7 @@ function handleLoad(slotIndex: number) {
   const slotData = loadFromSlot(slotIndex);
   if (slotData) {
     gameState.loadGameState(slotData.gameState);
-    emit('close');
+    emit("close");
     Message.success(`已读取槽位 ${slotIndex}`);
   }
 }
@@ -155,7 +166,7 @@ function handleDelete(slotIndex: number) {
   font-weight: bold;
   padding: 20px;
   margin: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(to right, #d790c4, #dbb8d2);
   color: white;
   text-align: center;
 }
@@ -178,8 +189,8 @@ function handleDelete(slotIndex: number) {
 }
 
 .slot-item:hover {
-  border-color: #667eea;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+  border-color: #7784c0;
+  box-shadow: 0 4px 12px rgba(73, 81, 115, 0.2);
 }
 
 .slot-item.empty {
@@ -257,7 +268,7 @@ function handleDelete(slotIndex: number) {
 }
 
 .save-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(to right, #d790c4, #dbb8d2);
   color: white;
 }
 
