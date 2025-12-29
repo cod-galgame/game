@@ -1,6 +1,9 @@
 <template>
   <div class="game-view">
-    <UsernameInput v-if="currentPage === 'username'" @submit="handleUsernameSubmit" />
+    <UsernameInput
+      v-if="currentPage === 'username'"
+      @submit="handleUsernameSubmit"
+    />
     <StoryArea
       v-else-if="currentPage === 'story'"
       @save="showSaveDialog = true"
@@ -22,21 +25,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import UsernameInput from '@/components/Username/UsernameInput.vue';
-import StoryArea from '@/components/Story/StoryArea.vue';
-import SaveLoadDialog from '@/components/SaveLoad/SaveLoadDialog.vue';
-import { useGameStateStore } from '@/stores/gameState';
+import { ref } from "vue";
+import UsernameInput from "@/components/Username/UsernameInput.vue";
+import StoryArea from "@/components/Story/StoryArea.vue";
+import SaveLoadDialog from "@/components/SaveLoad/SaveLoadDialog.vue";
+import { useGameStateStore } from "@/stores/gameState";
 
 const gameState = useGameStateStore();
-const currentPage = ref<'username' | 'story'>('username');
+const currentPage = ref<"username" | "story">("username");
 const showSaveDialog = ref(false);
 const showLoadDialog = ref(false);
 
 function handleUsernameSubmit(username: string) {
   gameState.resetGame();
   gameState.setUsername(username);
-  currentPage.value = 'story';
+  currentPage.value = "story";
 }
 </script>
 

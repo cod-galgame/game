@@ -47,18 +47,18 @@
   },
   "day1_evening_clinic_konig_visit": {
     "id": "day1_evening_clinic_konig_visit",
-    "text": "夜幕降临，诊所快关门时，König推门进来。\n他头盔压得很低，声音带着电流声：\n\"{{konig.evening}}\"",
+    "text": "夜幕降临，诊所快关门时，König推门进来。\n他的鸭舌帽压得很低，声音带着无法被忽视的失落：\n\"{{konig.evening}}\"",
     "options": [
       {
         "id": "konigA",
-        "text": "A：你平时壮的像牛，怎么还会拉伤？",
+        "text": "A：你平时壮的像头牛，居然还会拉伤？",
         "effect": {},
         "record": "day1_evening_clinic_konig_visit_A",
         "nextNode": "day1_evening_clinic_konig_injury_response_a"
       },
       {
         "id": "konigB",
-        "text": "B：找我就对了，我专精运动损伤修复！",
+        "text": "B：找我就对了！我家祖传手艺，专精运动损伤修复！",
         "effect": { "konig": 5 },
         "record": "day1_evening_clinic_konig_visit_B",
         "nextNode": "day1_evening_clinic_konig_injury_response_b"
@@ -596,8 +596,14 @@
         "effect": {},
         "record": "day11_midnight_clinic_ghost_critical_injury_A",
         "branches": [
-          { "cond": { "field": "reputation", "op": "gte", "value": 70 }, "nextNode": "day11_midnight_clinic_success_rescue" },
-          { "cond": { "field": "reputation", "op": "gte", "value": 50 }, "nextNode": "day11_midnight_clinic_rescue_with_sequela" },
+          {
+            "cond": { "field": "reputation", "op": "gte", "value": 70 },
+            "nextNode": "day11_midnight_clinic_success_rescue"
+          },
+          {
+            "cond": { "field": "reputation", "op": "gte", "value": 50 },
+            "nextNode": "day11_midnight_clinic_rescue_with_sequela"
+          },
           { "nextNode": "day11_midnight_clinic_rescue_failure" }
         ]
       }
@@ -652,9 +658,24 @@
         "effect": {},
         "record": "day15_afternoon_clinic_final_epilogue_A",
         "branches": [
-          { "cond": { "op": "and", "conds": [{ "field": "ghost", "op": "gte", "value": 40 }, { "field": "konig", "op": "gte", "value": 25 }] }, "nextNode": "day15_afternoon_clinic_perfect_ending" },
-          { "cond": { "field": "ghost", "op": "gte", "value": 30 }, "nextNode": "day15_afternoon_clinic_normal_ending" },
-          { "cond": { "field": "konig", "op": "gte", "value": 20 }, "nextNode": "day15_afternoon_clinic_normal_ending" },
+          {
+            "cond": {
+              "op": "and",
+              "conds": [
+                { "field": "ghost", "op": "gte", "value": 40 },
+                { "field": "konig", "op": "gte", "value": 25 }
+              ]
+            },
+            "nextNode": "day15_afternoon_clinic_perfect_ending"
+          },
+          {
+            "cond": { "field": "ghost", "op": "gte", "value": 30 },
+            "nextNode": "day15_afternoon_clinic_normal_ending"
+          },
+          {
+            "cond": { "field": "konig", "op": "gte", "value": 20 },
+            "nextNode": "day15_afternoon_clinic_normal_ending"
+          },
           { "nextNode": "day15_afternoon_clinic_regret_ending" }
         ]
       }

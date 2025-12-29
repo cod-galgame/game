@@ -14,8 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import Message, { type MessageProps } from './Message.vue';
+import { ref } from "vue";
+import Message, { type MessageProps } from "./Message.vue";
 
 interface MessageItem extends MessageProps {
   id: number;
@@ -30,14 +30,14 @@ function addMessage(options: MessageProps) {
 }
 
 function removeMessage(id: number) {
-  const index = messages.value.findIndex(msg => msg.id === id);
+  const index = messages.value.findIndex((msg) => msg.id === id);
   if (index > -1) {
     messages.value.splice(index, 1);
   }
 }
 
 defineExpose({
-  addMessage
+  addMessage,
 });
 </script>
 

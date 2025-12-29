@@ -8,10 +8,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import GameView from '@/views/GameView.vue';
-import MessageContainer from '@/components/Message/MessageContainer.vue';
-import { setMessageContainer } from '@/utils/message';
+import { ref, onMounted } from "vue";
+import GameView from "@/views/GameView.vue";
+import MessageContainer from "@/components/Message/MessageContainer.vue";
+import { setMessageContainer } from "@/utils/message";
 
 const messageContainerRef = ref();
 
@@ -28,11 +28,13 @@ onMounted(() => {
   padding: 0;
   box-sizing: border-box;
 }
-
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
 }
 
 #app {
@@ -48,7 +50,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(to right, #d790c4, #dbb8d2);
 }
 
 .game-content {
