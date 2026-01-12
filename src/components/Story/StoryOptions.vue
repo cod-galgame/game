@@ -30,57 +30,11 @@
 import { computed } from "vue";
 import { useGameStateStore } from "@/stores/gameState";
 import { useStoryEngineStore } from "@/stores/storyEngine";
-import type { StoryOption, Condition, CompareOp } from "@/types/StoryNode";
+import type { StoryOption } from "@/types/StoryNode";
+import { evaluateCondition } from "@/utils/conditionEvaluator";
 
 const gameState = useGameStateStore();
 const storyEngine = useStoryEngineStore();
-
-// 获取字段值
-function getFieldValue(field: string): number {
-  if (field === "reputation") {
-    return gameState.reputation;
-  }
-  // 其他字段视为角色好感度
-  return (
-    gameState.favorability[field as keyof typeof gameState.favorability] || 0
-  );
-}
-
-// 比较操作
-function compare(left: number, op: CompareOp, right: number): boolean {
-  switch (op) {
-    case "eq":
-      return left === right;
-    case "ne":
-      return left !== right;
-    case "gt":
-      return left > right;
-    case "lt":
-      return left < right;
-    case "gte":
-      return left >= right;
-    case "lte":
-      return left <= right;
-    default:
-      return false;
-  }
-}
-
-// 评估条件
-function evaluateCondition(cond: Condition): boolean {
-  if ("field" in cond) {
-    // 基础条件
-    const value = getFieldValue(cond.field);
-    return compare(value, cond.op, cond.value);
-  } else {
-    // 组合条件
-    if (cond.op === "and") {
-      return cond.conds.every((c) => evaluateCondition(c));
-    } else {
-      return cond.conds.some((c) => evaluateCondition(c));
-    }
-  }
-}
 
 const options = computed(() => {
   const node = storyEngine.getCurrentNode(gameState.currentNodeId);
@@ -89,66 +43,21 @@ const options = computed(() => {
   // 过滤掉不满足显示条件的选项
   return allOptions.filter((option) => {
     if (!option.visibilityCondition) return true;
-    return evaluateCondition(option.visibilityCondition);
+    return evaluateCondition(option.visibilityCondition, gameState);
   });
 });
 
 function handleOptionClick(option: StoryOption) {
-  // 1. 检查是否需要重置游戏
-  if (option.effect?.resetGame) {
-    const currentUsername = gameState.username;
-    gameState.resetGame();
-    gameState.setUsername(currentUsername);
-    return;
+  const node = storyEngine.getCurrentNode(gameState.currentNodeId);
+  
+  if (node?.video) {
+    gameState.setVideoToPlay(node.video);
+    gameState.setPendingOption(option);
+  } else {
+    // If there is no video, proceed as normal by setting and resolving the pending option.
+    gameState.setPendingOption(option);
+    gameState.resolvePendingOption();
   }
-
-  // 2. 记录选择
-  if (option.record) {
-    const recordKey = option.record.split("_")[0];
-    gameState.recordChoice(recordKey, option.record);
-  }
-
-  // 3. 应用效果
-  if (option.effect) {
-    if (option.effect.ghost) {
-      gameState.updateFavorability("ghost", option.effect.ghost);
-    }
-    if (option.effect.konig) {
-      gameState.updateFavorability("konig", option.effect.konig);
-    }
-    if (option.effect.reputation) {
-      gameState.updateReputation(option.effect.reputation);
-    }
-  }
-
-  // 4. 处理动态跳转
-  let nextNodeId = option.nextNode;
-  if (option.branches) {
-    nextNodeId = resolveBranches(option.branches);
-  }
-
-  // 5. 跳转到下一节点
-  if (nextNodeId) {
-    gameState.setCurrentNode(nextNodeId);
-  }
-}
-
-function resolveBranches(
-  branches: StoryOption["branches"],
-): string | undefined {
-  if (!branches) return undefined;
-
-  for (const branch of branches) {
-    // 无条件分支为默认分支
-    if (!branch.cond) {
-      return branch.nextNode;
-    }
-    // 评估条件
-    if (evaluateCondition(branch.cond)) {
-      return branch.nextNode;
-    }
-  }
-  return undefined;
 }
 </script>
 

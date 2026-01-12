@@ -21,6 +21,12 @@
       mode="load"
       @close="showLoadDialog = false"
     />
+    
+    <VideoPlayer 
+      v-if="gameState.videoToPlay"
+      :src="gameState.videoToPlay"
+      @closed="handleVideoClosed"
+    />
   </div>
 </template>
 
@@ -29,6 +35,7 @@ import { ref } from "vue";
 import UsernameInput from "@/components/Username/UsernameInput.vue";
 import StoryArea from "@/components/Story/StoryArea.vue";
 import SaveLoadDialog from "@/components/SaveLoad/SaveLoadDialog.vue";
+import VideoPlayer from "@/components/VideoPlayer.vue";
 import { useGameStateStore } from "@/stores/gameState";
 
 const gameState = useGameStateStore();
@@ -40,6 +47,11 @@ function handleUsernameSubmit(username: string) {
   gameState.resetGame();
   gameState.setUsername(username);
   currentPage.value = "story";
+}
+
+function handleVideoClosed() {
+  gameState.setVideoToPlay(null);
+  gameState.resolvePendingOption();
 }
 </script>
 

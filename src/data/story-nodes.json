@@ -1,18 +1,19 @@
 {
   "day1_morning_clinic": {
     "id": "day1_morning_clinic",
-    "text": "清晨的诊所刚开门，Ghost就推门进来了。\n他腰腹部缠着渗血的纱布，语气简洁：\n\"{{ghost.initial}}\"\n你凑近查看，伤口仅3cm长，是流弹擦伤的轻微伤。",
+    "text": "今天是你开业的第一天，为了图个好兆头，你一大早就来开门了。本想不会有这么早就上门的病人，结果刚把门口的小牌子改成open，基地里那位平日几乎不在公共场合露面的中尉便推门进来了。\n他腰腹部缠着过分紧绷的纱布，看起来有轻微渗血。\n\"{{ghost.initial}}\"\n你凑近将纱布解开，伤口仅3cm长，是流弹擦伤的轻微伤。",
+    "video": "/assets/vedio/引子Ghost日间就医.mp4",
     "options": [
       {
         "id": "optionA",
-        "text": "A：你这看起来只有3cm，减张带贴一下就行了。",
+        "text": "A：你这伤口看起来只有3cm，减张带贴一下就行了。",
         "effect": { "ghost": 5 },
         "record": "day1_morning_clinic_A",
         "nextNode": "day1_morning_clinic_ghost_response_cheap"
       },
       {
         "id": "optionB",
-        "text": "B：缝针50磅。",
+        "text": "B：缝针吧，50磅。",
         "effect": {},
         "record": "day1_morning_clinic_B",
         "nextNode": "day1_morning_clinic_ghost_response_price"
@@ -21,44 +22,57 @@
   },
   "day1_morning_clinic_ghost_response_cheap": {
     "id": "day1_morning_clinic_ghost_response_cheap",
-    "text": "Ghost看着你递来的减张带，眼神微顿（你能看到面罩下的眼尾松了一瞬）：\n\"{{ghost.responseToCheap}}\"\n他接过工具自行处理，临走时丢下一句：\n\"明天训练后来复查，{$username}。\"",
+    "text": "Ghost看着你递来的减张带，眼神略微停顿了一下：\n\"{{ghost.responseToCheap}}\"\n他接过工具迅速的自行处理起来，似乎对在你面前露出腹肌并不觉得尴尬。临走时，他回头丢下一句：\n\"明早训练后我会来复查，{$username}。医生\"",
     "options": [
       {
         "id": "nextA",
         "text": "点头回应：\"好，明天见。\"",
         "effect": {},
         "record": "day1_morning_clinic_ghost_response_cheap_A",
-        "nextNode": "day1_evening_clinic_konig_visit"
+        "nextNode": "day1_yourtime_os"
       }
     ]
   },
   "day1_morning_clinic_ghost_response_price": {
     "id": "day1_morning_clinic_ghost_response_price",
-    "text": "Ghost面具下的下颌线紧绷了一下，挑眉道：\n\"{{ghost.responseToPrice}}\"\n但他没多争执，掏出钱放在桌上：\n\"处理好，别感染，{$username}。\"",
+    "text": "Ghost面具下的下颚线紧绷了一下，挑眉道：\n\"{{ghost.responseToPrice}}\"\n但他没多争执，掏出钱放在桌上：\n\"处理好，别让我感染，{$username}。\"",
     "options": [
       {
         "id": "nextB",
-        "text": "接过钱：\"放心，比基地的手艺好。\"",
+        "text": "你兴冲冲接过钱：\"放心啦，一分钱一分货，绝对是和基地不同的体验。\"",
         "effect": {},
         "record": "day1_morning_clinic_ghost_response_price_A",
+        "nextNode": "day1_yourtime_os"
+      }
+    ]
+  },
+  "day1_yourtime_os": {
+    "id":"day1_yourtime_os",
+    "text":"今天毕竟是诊所开业的第一天，你不指望有多少病人能上门，因此在ghost离开之后你清闲了一整天。除了收纳一下现有的简易的清创的器械和药品之后，你无所事事的等待着下班。\"\n要不以后还是改成预约制吧，这样傻等也真是够人喝一壶的。你揉着眼睛盯着时钟风格，准备一到8点就立刻关门走人。\"\n但似乎，又来生意了？",
+    "video": "/assets/vedio/引子Konig夜间就医.mp4",
+    "options":[
+      {
+        "id":"day1_os",
+        "text":"门被横冲直闯的推开了，你甚至没有来的及说请进。",
+        "effect": {},
         "nextNode": "day1_evening_clinic_konig_visit"
       }
     ]
   },
   "day1_evening_clinic_konig_visit": {
     "id": "day1_evening_clinic_konig_visit",
-    "text": "夜幕降临，诊所快关门时，König推门进来。\n他的鸭舌帽压得很低，声音带着无法被忽视的失落：\n\"{{konig.evening}}\"",
+    "text": "你甚至完全没有半点惊讶，破门而入的人当然是König。\n他的鸭舌帽压得很低，声音带着无法被忽视的低落：\n\"{{konig.evening}}\"",
     "options": [
       {
         "id": "konigA",
-        "text": "A：你平时壮的像头牛，居然还会拉伤？",
-        "effect": {},
+        "text": "A：以你的肌肉量应该很难出现拉伤的问题呀，我离开基地这一个月你去出了什么超级惊险的任务？",
+        "effect": {"konig": 5},
         "record": "day1_evening_clinic_konig_visit_A",
         "nextNode": "day1_evening_clinic_konig_injury_response_a"
       },
       {
         "id": "konigB",
-        "text": "B：找我就对了！我家祖传手艺，专精运动损伤修复！",
+        "text": "B：找我就对啦！老中医祖传手艺，专精各类损伤修复！",
         "effect": { "konig": 5 },
         "record": "day1_evening_clinic_konig_visit_B",
         "nextNode": "day1_evening_clinic_konig_injury_response_b"
@@ -67,11 +81,11 @@
   },
   "day1_evening_clinic_konig_injury_response_a": {
     "id": "day1_evening_clinic_konig_injury_response_a",
-    "text": "König身体僵硬了一下，低声说：\n\"{{konig.injuryResponse}}\"\n你为他涂抹了镇痛药膏，他道谢后匆匆离开。\n（提示：{$username}错过末班车，被迫睡在诊所）",
+    "text": "König身体僵硬了一下，低声说：\n\"{{konig.injuryResponse}}\"\n他道谢后匆匆离开，似乎不想被人看到自己曾经出来就诊。\n",
     "options": [
       {
         "id": "nightA",
-        "text": "收拾休息，准备过夜",
+        "text": "治疗后天色太晚了，路上可能不安全，你决定直接在诊所收拾休息，准备过夜。",
         "effect": {},
         "record": "day1_evening_clinic_konig_injury_response_a_A",
         "nextNode": "day1_midnight_clinic_crisis_alert"
@@ -80,11 +94,12 @@
   },
   "day1_evening_clinic_konig_injury_response_b": {
     "id": "day1_evening_clinic_konig_injury_response_b",
-    "text": "头盔里传来轻笑，电流声都柔和了：\n\"{{konig.injuryResponse}}\"\n他主动说明是任务拉伤，治疗后提醒：\n\"{{konig.nightReminder}}\"",
+    "text": "面罩后面里传来轻笑，连他的破锣嗓子都显得柔和了：\n\"{{konig.injuryResponse}}\"\n他犹豫了半晌，但还是在你为他治疗后出声提醒道：\n\"{{konig.nightReminder}}\"",
+    "video": "/assets/vedio/场景三Konig送医生回诊所.mp4",
     "options": [
       {
         "id": "nightB",
-        "text": "笑着回应：\"多谢提醒，晚安。\"",
+        "text": "你觉得有些奇怪，但还是回答：\"多谢提醒，晚安。\"",
         "effect": {},
         "record": "day1_evening_clinic_konig_injury_response_b_A",
         "nextNode": "day1_midnight_clinic_crisis_alert"
@@ -93,19 +108,20 @@
   },
   "day1_midnight_clinic_crisis_alert": {
     "id": "day1_midnight_clinic_crisis_alert",
-    "text": "深夜的尖叫声划破夜空，{$username}惊醒后抓起医疗箱冲出门。\n东南方向火光冲天，老爷车打不着火时，Ghost跑来（语气比上次柔和）：\n\"{{ghost.nightCrisis}}\"",
+    "text": "深夜的尖叫声划破夜空，你在睡梦中被惊醒，随便披了件衣服就冲出门。\n城市的东南方向火光冲天，警笛声和救护车的声音弥漫着本应在静谧的夜空。市区现在一定缺少医护人员，你来不及多做考虑，抓起你的老爷车钥匙就往门口冲去。\n但非常倒霉的是，你的二手车在这个关键时刻歇菜了。不知为何，Ghost没有跟随大部队出发救援，反而独自一人来到了你的诊所门口：\"{{ghost.nightCrisis}}\"",
+    "video": "/assets/vedio/场景二远处爆炸.mp4",
     "options": [
       {
         "id": "carA",
-        "text": "A：我要去救人，开到现场再借你",
+        "text": "A：我这车马力不行，你确定要跟我的车吗？",
         "effect": { "ghost": 5, "reputation": 5 },
         "record": "day1_midnight_clinic_crisis_alert_A",
         "nextNode": "day1_midnight_clinic_ghost_car_response_a"
       },
       {
         "id": "carB",
-        "text": "B：打不着火，你能开就借你",
-        "effect": {},
+        "text": "B：眼下打不着火，你能开走吗？",
+        "effect": {"ghost": 5, "reputation": 5},
         "record": "day1_midnight_clinic_crisis_alert_B",
         "nextNode": "day1_midnight_clinic_ghost_car_response_b"
       }
@@ -117,7 +133,7 @@
     "options": [
       {
         "id": "goSceneA",
-        "text": "一起出发前往现场",
+        "text": "【一起出发前往现场】",
         "effect": {},
         "record": "day1_midnight_clinic_ghost_car_response_a_A",
         "nextNode": "day1_midnight_scene_konig_arrive"
@@ -127,10 +143,11 @@
   "day1_midnight_clinic_ghost_car_response_b": {
     "id": "day1_midnight_clinic_ghost_car_response_b",
     "text": "Ghost绕车检查一圈：\n\"{{ghost.carResponseB}}\"",
+    "video": "/assets/vedio/场景一Ghost借车递钥匙.mp4",
     "options": [
       {
         "id": "goSceneB",
-        "text": "递过钥匙：\"路上小心，我随后就到\"",
+        "text": "递过钥匙：\"那先谢谢你咯。\"",
         "effect": {},
         "record": "day1_midnight_clinic_ghost_car_response_b_A",
         "nextNode": "day1_midnight_scene_konig_arrive"
@@ -139,11 +156,12 @@
   },
   "day1_midnight_scene_konig_arrive": {
     "id": "day1_midnight_scene_konig_arrive",
-    "text": "你们抵达现场，König{{konig.sceneGreeting}}\n一个光脚小男孩跑过来哭着说：\n\"{{npc.boyPain}}\"",
+    "text": "你的车子只能踩到八十迈，一路上被各路警车军车超过，但好歹还是安全的抵达现场。Ghost和你简单对视了一秒便跳车消失不见了。你在混乱中一眼看到了König{{konig.sceneGreeting}}\n当下的情况十分混乱，你还来不及和König确认现在的情况，一个光脚小男孩跑过来哭着说：\n\"{{npc.boyPain}}\"",
+    "background": "/assets/pic/场景一Konig抵达现场.jpg",
     "options": [
       {
         "id": "checkBoy",
-        "text": "立刻蹲下为他检查",
+        "text": "【立刻蹲下为他检】",
         "effect": {},
         "record": "day1_midnight_scene_konig_arrive_A",
         "nextNode": "day1_midnight_scene_ghost_medical_check"
@@ -152,11 +170,12 @@
   },
   "day1_midnight_scene_ghost_medical_check": {
     "id": "day1_midnight_scene_ghost_medical_check",
-    "text": "你检查后排除颅内损伤，男孩挠着后腰说：\n\"这里好痒，有东西硌着...{$username}...\"\n你撩起睡衣，看到贴卡通贴纸的黑色装置：\n\"{{npc.bombTimer}}\"\nGhost立刻靠过来：\n\"{{ghost.medicalCheck}}\"",
+    "text": "你简单的检查排除了小男孩严重脑震荡的可能性，大概只是在慌乱中磕碰到了。为了安慰他，你蹲下环住了他的腰，却摸到了一个不寻常的东西，你撩起小男孩的睡衣，看到了贴着卡通贴纸的黑色装置：\n\"{{npc.bombTimer}}\"\nGhost又不知何时神出鬼没的出现在了你的身后：\n\"{{ghost.medicalCheck}}\"",
+    "background": "/assets/pic/被安装爆炸物的小男孩.jpg",
     "options": [
       {
         "id": "calmDown",
-        "text": "保持冷静，准备应对危机",
+        "text": "保持冷静，深呼吸，你面色扭曲的自我安慰着。",
         "effect": {},
         "record": "day1_midnight_scene_ghost_medical_check_A",
         "nextNode": "day1_midnight_scene_ghost_bomb_crisis"
@@ -165,7 +184,8 @@
   },
   "day1_midnight_scene_ghost_bomb_crisis": {
     "id": "day1_midnight_scene_ghost_bomb_crisis",
-    "text": "König将你护在身后，倒计时加速到00:05！\n你翻出工具喊：\n\"König，固定他的身体！{$username}能处理！\"\nGhost立刻冲过来指导：\n\"{{ghost.bombCrisis}}\"",
+    "text": "König从自己的工具包里找出，倒计时加速到00:05！\n你翻出工具喊：\n\"König，固定他的身体！Ghost能叫我处理！\"\nGhost立刻冲过来指导：\n\"{{ghost.bombCrisis}}\"",
+    "background": "/assets/pic/爆炸物特写.jpg",
     "options": [
       {
         "id": "trustGhost",
@@ -186,6 +206,7 @@
   "day1_midnight_scene_ghost_crisis_end": {
     "id": "day1_midnight_scene_ghost_crisis_end",
     "text": "倒计时停在00:02！危机解除。\nKönig拍着你的后背说：\n\"干得好，{$username}。\"\nGhost走到你身边：\n\"{{ghost.crisisEnd}}\"",
+    "background": "/assets/pic/爆炸物停止特写.jpg",
     "options": [
       {
         "id": "backClinic",
@@ -212,6 +233,7 @@
   "day2_morning_clinic_ghost_aftermath_car_a": {
     "id": "day2_morning_clinic_ghost_aftermath_car_a",
     "text": "清晨诊所开门，你的老爷车停在门口，引擎盖还带着余温。Ghost靠在车门上，兜帽遮住半张脸，手里捏着一张便签。他主动上前，声音比平时柔和：\n\"{{ghost.aftermathCarA}}\"\n他递过便签，上面是潦草的字迹：\n\"三年前拆弹小组的制式装置，电源接口都在右侧，{$username}。\"",
+    "video": "/assets/vedio/场景四Ghost送车归来.mp4",
     "options": [
       {
         "id": "A1",
@@ -232,6 +254,7 @@
   "day2_morning_clinic_ghost_unlock_memory": {
     "id": "day2_morning_clinic_ghost_unlock_memory",
     "text": "Ghost喉结动了动，突然说：\n\"{{ghost.unlockMemory}}\"",
+    "video": "/assets/vedio/场景三Ghost转身离开.mp4",
     "options": [
       {
         "id": "askMore",
@@ -245,6 +268,7 @@
   "day2_evening_clinic_konig_night_visit": {
     "id": "day2_evening_clinic_konig_night_visit",
     "text": "当晚König来诊所复诊，卸下头盔——他坐在诊疗椅上，手指无意识摩挲着护臂：\n\"{{konig.nightVisit}}\"",
+    "video": "/assets/vedio/场景五Konig复诊.mp4",
     "options": [
       {
         "id": "A",
@@ -285,6 +309,7 @@
   "day2_evening_clinic_konig_reveal_detail": {
     "id": "day2_evening_clinic_konig_reveal_detail",
     "text": "König从口袋里掏出一张折叠的纸：\n\"{{konig.revealDetail}}\"",
+    "background": "/assets/pic/任务原始报告.png",
     "options": [
       {
         "id": "takeReport",
@@ -298,6 +323,7 @@
   "day2_night_clinic_leo_warning": {
     "id": "day2_night_clinic_leo_warning",
     "text": "König离开后，Leo端着两杯咖啡走进来，神色凝重：\n\"{{npc.leoWarning}}\"",
+    "background": "/assets/pic/诊所护士 Leo.png",
     "options": [
       {
         "id": "A",
@@ -325,6 +351,7 @@
   "day3_midnight_clinic_ghost_visit": {
     "id": "day3_midnight_clinic_ghost_visit",
     "text": "凌晨三点，诊所后门被轻轻敲响。Ghost浑身是汗，左臂有一道深可见骨的划伤——是被刀划的，应该是躲避监视时与人冲突。他靠在门框上，面具沾染着灰尘：\n\"{{ghost.midnightVisit}}\"\n你立刻拉他进屋，打开应急灯：\n\"伤口很深，需要清创缝合，可能会留疤，{$username}。\"",
+    "video": "/assets/vedio/场景七深夜的访客Ghost.mp4",
     "options": [
       {
         "id": "A",
@@ -404,6 +431,7 @@
   "day3_morning_clinic_konig_rehab": {
     "id": "day3_morning_clinic_konig_rehab",
     "text": "次日König来做康复训练，你帮他拉伸韧带时，他突然闷哼一声——旧伤牵扯到了童年的疤痕。\n\"{{konig.rehabNextDay}}\"",
+    "video": "/assets/vedio/场景八Konig的童年.mp4",
     "options": [
       {
         "id": "A",
@@ -457,6 +485,7 @@
   "day3_noon_clinic_hawk_visit": {
     "id": "day3_noon_clinic_hawk_visit",
     "text": "中午，Hawk少校带着两名士兵走进诊所，双手背在身后，眼神轻蔑：\n\"{{npc.hawkVisit}}\"",
+    "background": "/assets/pic/Hawk少校诬陷.png",
     "options": [
       {
         "id": "A",
@@ -523,6 +552,7 @@
   "day4_morning_clinic_leo_provide_evidence": {
     "id": "day4_morning_clinic_leo_provide_evidence",
     "text": "Leo拿着一份文件冲进诊所，脸色兴奋：\n\"{{npc.leoEvidence}}\"",
+    "background": "/assets/pic/Leo带回文件.png",
     "options": [
       {
         "id": "A",
@@ -576,6 +606,7 @@
   "day4_afternoon_clinic_health_inspection": {
     "id": "day4_afternoon_clinic_health_inspection",
     "text": "诊所迎来卫生检查，暂时搁置了证据的事，{$username}。",
+    "background": "/assets/pic/卫生部门检查.png",
     "options": [
       {
         "id": "next",
@@ -589,6 +620,7 @@
   "day11_midnight_clinic_ghost_critical_injury": {
     "id": "day11_midnight_clinic_ghost_critical_injury",
     "text": "凌晨两点，诊所大门被猛地撞开。Ghost踉跄着冲进来，腹部鲜血淋漓——是贯穿伤，伤口还在冒着血泡，右手无力地垂着，神经明显受损。\n\"{{ghost.criticalInjury}}\"",
+    "video": "/assets/vedio/场景十二Ghost重伤.mp4",
     "options": [
       {
         "id": "surgery",

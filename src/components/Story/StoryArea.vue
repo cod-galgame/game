@@ -1,5 +1,5 @@
 <template>
-  <div class="story-area">
+  <div class="story-area" :style="backgroundStyle">
     <div class="top-bar">
       <StatusBar />
       <div class="save-buttons">
@@ -21,11 +21,25 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import StatusBar from "@/components/StatusBar/StatusBar.vue";
 import StoryText from "./StoryText.vue";
 import StoryOptions from "./StoryOptions.vue";
+import { useGameStateStore } from "@/stores/gameState";
+import { useStoryEngineStore } from "@/stores/storyEngine";
 
 defineEmits(["save", "load"]);
+
+const gameState = useGameStateStore();
+const storyEngine = useStoryEngineStore();
+
+const backgroundStyle = computed(() => {
+  const node = storyEngine.getCurrentNode(gameState.currentNodeId);
+  const imageUrl = node?.background || "/assets/pic/default.jpg";
+  return {
+    backgroundImage: `url(${imageUrl})`,
+  };
+});
 </script>
 
 <style scoped>
@@ -33,7 +47,10 @@ defineEmits(["save", "load"]);
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: url("/assets/pic/default.jpg") center/cover no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: background-image 0.5s ease-in-out;
 }
 
 .top-bar {

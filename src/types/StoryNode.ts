@@ -52,6 +52,8 @@ export interface StoryNode {
   id: string; // 节点ID
   text: string; // 剧情文本(支持占位符，支持\n换行)
   options: StoryOption[]; // 选项列表
+  background?: string; // path to image
+  video?: string;      // path to video
 }
 
 export interface StoryNodesData {

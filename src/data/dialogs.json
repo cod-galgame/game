@@ -13,11 +13,11 @@
       {
         "min": 5,
         "max": 100,
-        "text": "你总能给出最划算的方案（眼尾微扬），{$username}。"
+        "text": "你总能给出最划算的方案，{$username}。"
       }
     ],
     "responseToPrice": [
-      { "min": 0, "max": 4, "text": "比基地还贵？{$username}？" },
+      { "min": 0, "max": 4, "text": "比在基地的时候还贵？{$username}医生？" },
       {
         "min": 5,
         "max": 100,
@@ -28,12 +28,12 @@
       {
         "min": 0,
         "max": 4,
-        "text": "{$username}，能借用你的车吗？（语气冰冷）"
+        "text": "{$username}医生，能借用你的车吗？"
       },
       {
         "min": 5,
         "max": 100,
-        "text": "{$username}，能借用你的车吗？（语气比上次柔和）"
+        "text": "{$username}，要一起去吗？"
       }
     ],
     "carResponseA": [
@@ -47,21 +47,21 @@
       {
         "min": 5,
         "max": 9,
-        "text": "疏于养护，但能开。我先去排查危险，{$username}你跟紧。"
+        "text": "电路老化，但临时能开走。{$username}医生，你到了现场跟紧我。"
       },
       {
         "min": 0,
         "max": 4,
-        "text": "疏于养护，但能开。我先去，出了事别找我，{$username}。"
+        "text": "疏于养护，但能开。我们先去现场，回头我再替你修车，{$username}。"
       }
     ],
     "medicalCheck": [
-      { "min": 10, "max": 100, "text": "我来教你拆，别慌，{$username}。" },
+      { "min": 10, "max": 100, "text": "你已经触发了开关，但别慌，我在这，我能解决这个麻烦，{$username}。" },
       { "min": 5, "max": 9, "text": "小心点，那是炸弹！{$username}！" },
       {
         "min": 0,
         "max": 4,
-        "text": "别乱碰，自己找死别连累别人，{$username}。"
+        "text": "别乱东，自己找死别连累别人，{$username}。"
       }
     ],
     "bombCrisis": [
@@ -126,35 +126,35 @@
       {
         "min": 0,
         "max": 4,
-        "text": "晚上好，{$username}，我的大腿韧带似乎拉伤了..."
+        "text": "晚上好，{$username}医生，我的大腿韧带似乎拉伤了..."
       },
       {
         "min": 5,
         "max": 100,
-        "text": "晚上好，{$username}～ 又来麻烦你了（电流声带笑意）"
+        "text": "晚上好，{$username}。 这么晚打扰真是抱歉，基地的医务室需要预约，但我不想让别人明天能看出来我不舒服。"
       }
-    ],
+    ], 
     "injuryResponse": [
       {
         "min": 0,
         "max": 4,
-        "text": "只是任务中紧急规避时拉伤的，{$username}。"
+        "text": "非常感谢，{$username}。"
       },
-      { "min": 5, "max": 100, "text": "非常感谢，{$username}。" }
+      { "min": 5, "max": 100, "text": "是的...上次的任务，我尽量不想吓到人质，是在规避对人质的伤害的时候拉伤的。" }
     ],
     "nightReminder": [
       {
         "min": 5,
         "max": 100,
-        "text": "晚上有情况，基地会有信号，{$username}。"
+        "text": "晚上市里可能有情况，你在夜里记得要锁好门，{$username}医生。"
       }
     ],
     "sceneGreeting": [
-      { "min": 0, "max": 4, "text": "面色紧绑地接管局势，看向{$username}。" },
+      { "min": 0, "max": 4, "text": "他整个人看起来非常紧绷。" },
       {
         "min": 5,
         "max": 100,
-        "text": "看到{$username}后立刻迎上来：{$username}，你来了就好。"
+        "text": "看到{$username}后立刻迎上来：{$username}，你怎么来了。"
       }
     ],
     "nightVisit": [
@@ -213,15 +213,14 @@
       {
         "min": 0,
         "max": 100,
-        "text": "{$username}，我的头好疼，像有虫子在咬..."
-      },
-      { "min": 0, "max": 100, "text": "这里好痒，有东西硌着...{$username}..." }
+        "text": "姐姐，我的头好疼，我找不到我妈妈了..."
+      }
     ],
     "bombTimer": [
       {
         "min": 0,
         "max": 100,
-        "text": "【倒计时：03:00】{$username}，快想想办法！"
+        "text": "【倒计时：03:00】我的个老天爷，是炸弹！怎么就剩三分钟了？？"
       }
     ],
     "leoWarning": [

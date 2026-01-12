@@ -1,9 +1,12 @@
 import type { CharacterState } from "./Character";
+import type { StoryOption } from "./StoryNode";
 
 export interface GameState {
-  username: string; // 玩家用户名
-  favorability: CharacterState; // 角色好感度
-  reputation: number; // 诊所声誉
-  currentNodeId: string; // 当前剧情节点
-  choiceRecords: Record<string, string>; // 选择记录
+  username: string;
+  favorability: CharacterState;
+  reputation: number;
+  currentNodeId: string;
+  choiceRecords: Record<string, string>;
+  videoToPlay?: string | null;
+  pendingOption?: StoryOption | null;
 }
