@@ -3,12 +3,14 @@ import vue from '@vitejs/plugin-vue';
 import vueDevtools from 'vite-plugin-vue-devtools';
 import path from 'path';
 import { encryptJsonPlugin } from './plugins/vite-plugin-encrypt-json';
+import { randomizeAssetsPlugin } from './plugins/vite-plugin-randomize-assets';
 
 export default defineConfig(({ command }) => ({
   plugins: [
     vue(),
     vueDevtools(),
-    // Only encrypt in production build to keep dev fast
+    // Only in production build
+    command === "build" && randomizeAssetsPlugin(),
     command === "build" && encryptJsonPlugin(),
   ].filter(Boolean),
   resolve: {

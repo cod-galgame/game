@@ -1,3 +1,2 @@
-video filter=lfs diff=lfs merge=lfs -text
 public/assets/pic/* filter=lfs diff=lfs merge=lfs -text
 public/assets/video/* filter=lfs diff=lfs merge=lfs -text
