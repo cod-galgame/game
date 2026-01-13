@@ -2,7 +2,7 @@
   "day1_morning_clinic": {
     "id": "day1_morning_clinic",
     "text": "今天是你开业的第一天，为了图个好兆头，你一大早就来开门了。本想不会有这么早就上门的病人，结果刚把门口的小牌子改成open，基地里那位平日几乎不在公共场合露面的中尉便推门进来了。\n他腰腹部缠着过分紧绷的纱布，看起来有轻微渗血。\n\"{{ghost.initial}}\"\n你凑近将纱布解开，伤口仅3cm长，是流弹擦伤的轻微伤。",
-    "video": "/assets/vedio/引子Ghost日间就医.mp4",
+		"video": "/assets/video/引子Ghost日间就医.mp4",
     "options": [
       {
         "id": "optionA",
@@ -49,7 +49,7 @@
   "day1_yourtime_os": {
     "id":"day1_yourtime_os",
     "text":"今天毕竟是诊所开业的第一天，你不指望有多少病人能上门，因此在ghost离开之后你清闲了一整天。除了收纳一下现有的简易的清创的器械和药品之后，你无所事事的等待着下班。\"\n要不以后还是改成预约制吧，这样傻等也真是够人喝一壶的。你揉着眼睛盯着时钟风格，准备一到8点就立刻关门走人。\"\n但似乎，又来生意了？",
-    "video": "/assets/vedio/引子Konig夜间就医.mp4",
+		"video": "/assets/video/引子Konig夜间就医.mp4",
     "options":[
       {
         "id":"day1_os",
@@ -95,7 +95,7 @@
   "day1_evening_clinic_konig_injury_response_b": {
     "id": "day1_evening_clinic_konig_injury_response_b",
     "text": "面罩后面里传来轻笑，连他的破锣嗓子都显得柔和了：\n\"{{konig.injuryResponse}}\"\n他犹豫了半晌，但还是在你为他治疗后出声提醒道：\n\"{{konig.nightReminder}}\"",
-    "video": "/assets/vedio/场景三Konig送医生回诊所.mp4",
+		"video": "/assets/video/场景三Konig送医生回诊所.mp4",
     "options": [
       {
         "id": "nightB",
@@ -109,7 +109,7 @@
   "day1_midnight_clinic_crisis_alert": {
     "id": "day1_midnight_clinic_crisis_alert",
     "text": "深夜的尖叫声划破夜空，你在睡梦中被惊醒，随便披了件衣服就冲出门。\n城市的东南方向火光冲天，警笛声和救护车的声音弥漫着本应在静谧的夜空。市区现在一定缺少医护人员，你来不及多做考虑，抓起你的老爷车钥匙就往门口冲去。\n但非常倒霉的是，你的二手车在这个关键时刻歇菜了。不知为何，Ghost没有跟随大部队出发救援，反而独自一人来到了你的诊所门口：\"{{ghost.nightCrisis}}\"",
-    "video": "/assets/vedio/场景二远处爆炸.mp4",
+		"video": "/assets/video/场景二远处爆炸.mp4",
     "options": [
       {
         "id": "carA",
@@ -143,7 +143,7 @@
   "day1_midnight_clinic_ghost_car_response_b": {
     "id": "day1_midnight_clinic_ghost_car_response_b",
     "text": "Ghost绕车检查一圈：\n\"{{ghost.carResponseB}}\"",
-    "video": "/assets/vedio/场景一Ghost借车递钥匙.mp4",
+		"video": "/assets/video/场景一Ghost借车递钥匙.mp4",
     "options": [
       {
         "id": "goSceneB",
@@ -233,7 +233,7 @@
   "day2_morning_clinic_ghost_aftermath_car_a": {
     "id": "day2_morning_clinic_ghost_aftermath_car_a",
     "text": "清晨诊所开门，你的老爷车停在门口，引擎盖还带着余温。Ghost靠在车门上，兜帽遮住半张脸，手里捏着一张便签。他主动上前，声音比平时柔和：\n\"{{ghost.aftermathCarA}}\"\n他递过便签，上面是潦草的字迹：\n\"三年前拆弹小组的制式装置，电源接口都在右侧，{$username}。\"",
-    "video": "/assets/vedio/场景四Ghost送车归来.mp4",
+		"video": "/assets/video/场景四Ghost送车归来.mp4",
     "options": [
       {
         "id": "A1",
@@ -254,7 +254,7 @@
   "day2_morning_clinic_ghost_unlock_memory": {
     "id": "day2_morning_clinic_ghost_unlock_memory",
     "text": "Ghost喉结动了动，突然说：\n\"{{ghost.unlockMemory}}\"",
-    "video": "/assets/vedio/场景三Ghost转身离开.mp4",
+		"video": "/assets/video/场景三Ghost转身离开.mp4",
     "options": [
       {
         "id": "askMore",
@@ -268,7 +268,7 @@
   "day2_evening_clinic_konig_night_visit": {
     "id": "day2_evening_clinic_konig_night_visit",
     "text": "当晚König来诊所复诊，卸下头盔——他坐在诊疗椅上，手指无意识摩挲着护臂：\n\"{{konig.nightVisit}}\"",
-    "video": "/assets/vedio/场景五Konig复诊.mp4",
+		"video": "/assets/video/场景五Konig复诊.mp4",
     "options": [
       {
         "id": "A",
@@ -351,7 +351,7 @@
   "day3_midnight_clinic_ghost_visit": {
     "id": "day3_midnight_clinic_ghost_visit",
     "text": "凌晨三点，诊所后门被轻轻敲响。Ghost浑身是汗，左臂有一道深可见骨的划伤——是被刀划的，应该是躲避监视时与人冲突。他靠在门框上，面具沾染着灰尘：\n\"{{ghost.midnightVisit}}\"\n你立刻拉他进屋，打开应急灯：\n\"伤口很深，需要清创缝合，可能会留疤，{$username}。\"",
-    "video": "/assets/vedio/场景七深夜的访客Ghost.mp4",
+		"video": "/assets/video/场景七深夜的访客Ghost.mp4",
     "options": [
       {
         "id": "A",
@@ -431,7 +431,7 @@
   "day3_morning_clinic_konig_rehab": {
     "id": "day3_morning_clinic_konig_rehab",
     "text": "次日König来做康复训练，你帮他拉伸韧带时，他突然闷哼一声——旧伤牵扯到了童年的疤痕。\n\"{{konig.rehabNextDay}}\"",
-    "video": "/assets/vedio/场景八Konig的童年.mp4",
+		"video": "/assets/video/场景八Konig的童年.mp4",
     "options": [
       {
         "id": "A",
@@ -620,7 +620,7 @@
   "day11_midnight_clinic_ghost_critical_injury": {
     "id": "day11_midnight_clinic_ghost_critical_injury",
     "text": "凌晨两点，诊所大门被猛地撞开。Ghost踉跄着冲进来，腹部鲜血淋漓——是贯穿伤，伤口还在冒着血泡，右手无力地垂着，神经明显受损。\n\"{{ghost.criticalInjury}}\"",
-    "video": "/assets/vedio/场景十二Ghost重伤.mp4",
+		"video": "/assets/video/场景十二Ghost重伤.mp4",
     "options": [
       {
         "id": "surgery",
