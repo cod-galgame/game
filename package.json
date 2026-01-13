@@ -18,11 +18,13 @@
     "vue": "^3.4.0"
   },
   "devDependencies": {
+    "@types/node": "^25.0.7",
     "@vitejs/plugin-vue": "^6.0.3",
     "@vue/compiler-sfc": "^3.5.26",
     "prettier": "^3.7.4",
     "typescript": "^5.9.3",
     "vite": "^7.3.0",
+    "vite-plugin-pwa": "^1.2.0",
     "vite-plugin-vue-devtools": "^8.0.5"
   }
 }
