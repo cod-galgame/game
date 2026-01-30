@@ -1,7 +1,7 @@
 {
   "day1_morning_clinic": {
     "id": "day1_morning_clinic",
-    "text": "今天是你开业的第一天，为了图个好兆头，你一大早就来开门了。本想不会有这么早就上门的病人，结果刚把门口的小牌子改成open，基地里那位平日几乎不在公共场合露面的中尉便推门进来了。\n他腰腹部缠着过分紧绷的纱布，看起来有轻微渗血。\n\"{{ghost.initial}}\"\n你凑近将纱布解开，伤口仅3cm长，是流弹擦伤的轻微伤。",
+    "text": "今天是你开业的第一天，为了图个好兆头，你一大早就来开门了。本想不会有这么早就上门的病人，结果刚把门口的小牌子改成open，基地里那位平日几乎不在公共场合露面的中尉便推门进来了。\n他腰腹部胡乱缠着纱布，看起来有轻微渗血。\n\"{{ghost.initial}}\"\n你凑近将纱布解开，伤口仅3cm长，是流弹擦伤的轻微伤。",
 		"video": "/assets/video/引子Ghost日间就医.mp4",
     "options": [
       {
@@ -72,7 +72,7 @@
       },
       {
         "id": "konigB",
-        "text": "找我就对！老中医祖传手艺，专精各类损伤修复！",
+        "text": "找我就对啦~老中医祖传手艺，祖传跌打损伤药方！",
         "effect": { "konig": 5 },
         "record": "day1_evening_clinic_konig_visit_B",
         "nextNode": "day1_evening_clinic_konig_injury_response_b"
@@ -81,7 +81,7 @@
   },
   "day1_evening_clinic_konig_injury_response_a": {
     "id": "day1_evening_clinic_konig_injury_response_a",
-    "text": "你的触碰让König的身体僵硬了一下，他低声说：\n\"{{konig.injuryResponse}}\"\n治疗进行了整整45分钟，他一直在避免和你对视。你不由得觉得好笑。\n",
+    "text": "你的触碰让König的身体僵硬了一下，他低声说：\n\"{{konig.injuryResponse}}\"\n治疗进行的过程中他一直在避免和你对视。你不由得觉得好笑。\n",
     "options": [
       {
         "id": "nightA",
@@ -108,19 +108,19 @@
   },
   "day1_midnight_clinic_crisis_alert": {
     "id": "day1_midnight_clinic_crisis_alert",
-    "text": "深夜的尖叫声划破夜空，你在睡梦中被惊醒，随便披了件衣服就冲出门。\n城市的东南方向火光冲天，警笛声和救护车的声音弥漫着本应在静谧的夜空。市区现在一定缺少医护人员，你来不及多做考虑，抓起你的老爷车钥匙就往门口冲去。\n但非常倒霉的是，你的二手车在这个关键时刻歇菜了。不知为何，Ghost没有跟随大部队出发救援，反而独自一人来到了你的诊所门口：\"{{ghost.nightCrisis}}\"",
+    "text": "深夜的尖叫声划破夜空，你在睡梦中被惊醒，随便披了件衣服就冲出门。\n城市的东南方向火光冲天，警笛声和救护车的声音弥漫着本应在静谧的夜空。这个时候市区一定缺少医护人员，你来不及多做考虑，抓起你的老爷车钥匙就往门口冲去。\n但非常倒霉的是，你的二手车在这个关键时刻歇菜了。不知为何，Ghost没有跟随大部队出发救援，反而独自一人来到了你的诊所门口：\"{{ghost.nightCrisis}}\"",
 		"video": "/assets/video/场景二远处爆炸.mp4",
     "options": [
       {
         "id": "carA",
-        "text": "我这车马力不行，你确定要跟我的车吗？",
+        "text": "我的车好像打不着火了，你确定要跟我的车吗？",
         "effect": { "ghost": 5, "reputation": 5 },
         "record": "day1_midnight_clinic_crisis_alert_A",
         "nextNode": "day1_midnight_clinic_ghost_car_response_a"
       },
       {
         "id": "carB",
-        "text": "眼下打不着火，你能开走吗？",
+        "text": "你能帮我修车吗？我现在是开不走他了。",
         "effect": {"ghost": 5, "reputation": 5},
         "record": "day1_midnight_clinic_crisis_alert_B",
         "nextNode": "day1_midnight_clinic_ghost_car_response_b"
@@ -129,7 +129,7 @@
   },
   "day1_midnight_clinic_ghost_car_response_a": {
     "id": "day1_midnight_clinic_ghost_car_response_a",
-    "text": "Ghost看着你的医疗箱，点头道：\n\"{{ghost.carResponseA}}\"",
+    "text": "Ghost看着你的医疗箱，点头道：\n\"没问题。\"",
     "video": "/assets/vedio/场景一Ghost借车递钥匙.mp4",
     "options": [
       {
@@ -157,7 +157,7 @@
   },
   "day1_midnight_scene_konig_arrive": {
     "id": "day1_midnight_scene_konig_arrive",
-    "text": "你的车子只能踩到八十迈，一路上被各路警车军车超过，但好歹还是安全的抵达现场。Ghost和你简单对视了一秒便跳车消失不见了。你在混乱中一眼看到了König{{konig.sceneGreeting}}\n当下的情况十分混乱，你还来不及和König确认现在的情况，一个光脚小男孩跑过来哭着说：\n\"{{npc.boyPain}}\"",
+    "text": "你的车子只能踩到八十迈，一路上被各路警车军车超过，但好歹还是安全的抵达现场。Ghost和你对视了一秒便跳车消失不见了。你在混乱中一眼看到了König{{konig.sceneGreeting}}\n当下的情况十分混乱，你还来不及和König确认现在的情况，一个光脚小男孩跑过来哭着说：\n\"{{npc.boyPain}}\"",
     "background": "/assets/pic/场景一Konig抵达现场.jpg",
     "options": [
       {
@@ -171,7 +171,7 @@
   },
   "day1_midnight_scene_ghost_medical_check": {
     "id": "day1_midnight_scene_ghost_medical_check",
-    "text": "你简单的检查排除了小男孩严重脑震荡的可能性，大概只是在慌乱中磕碰到了。为了安慰他，你蹲下环住了他的腰，却摸到了一个不寻常的东西，你撩起小男孩的睡衣，看到了贴着卡通贴纸的黑色装置：\n\"{{npc.bombTimer}}\"\nGhost又不知何时神出鬼没的出现在了你的身后：\n\"{{ghost.medicalCheck}}\"",
+    "text": "你简单的检查排除了小男孩严重脑震荡的可能性，大概只是在慌乱中磕碰到了。为了安慰他，你蹲下揽住了他的腰想要抱抱他，却摸到了一个不寻常的东西，你撩起小男孩的睡衣，看到了贴着卡通贴纸的黑色装置：\n\"{{npc.bombTimer}}\"\nGhost又不知何时神出鬼没的出现在了你的身后：\n\"{{ghost.medicalCheck}}\"",
     "background": "/assets/pic/被安装爆炸物的小男孩.jpg",
     "options": [
       {
@@ -206,12 +206,12 @@
   },
   "day1_midnight_scene_ghost_crisis_end": {
     "id": "day1_midnight_scene_ghost_crisis_end",
-    "text": "倒计时停在00:02！危机解除。\nKönig拍着你的后背说：\n\"干得好，{$username}。\"\nGhost走到你身边：\n\"{{ghost.crisisEnd}}\"时间似乎在这一瞬间静止，你的心脏依旧在剧烈的跳动，而这一瞬间身边的两个人，却让你感到无比的安心。你继续和你之前在基地的同事一起合作，将伤员都送上了救护车。\n天色几乎亮了。",
+    "text": "倒计时停在00:02！危机解除。\nKönig拍着你的后背说：\n\"干得好，{$username}。\"\nGhost走到你身边：\n\"{{ghost.crisisEnd}}\"时间似乎在这一瞬间静止，你的心脏依旧在剧烈的跳动。你继续和你之前在基地的同事一起合作，将伤员都送上了救护车。\n天色几乎亮了。",
     "background": "/assets/pic/爆炸物停止特写.jpg",
     "options": [
       {
         "id": "backClinic",
-        "text": "【独自返回诊所】",
+        "text": "【König认为你的状况不适合自己开车回家，于是送你回了诊所】",
         "effect": {},
         "record": "day1_midnight_scene_ghost_crisis_end_A",
         "nextNode": "day2_morning_clinic_ghost_aftermath_car_a"
@@ -223,17 +223,16 @@
     "text": "你触到红色电容，装置爆炸！\n模糊中看到König扑过来护住你，Ghost也冲了过来...\n（坏结局：{$username}，你是个勇敢的医生，你为患者尽职尽责，但似乎缺了一点好运。感谢你的游玩。）",
     "options": [
       {
-        "id": "restart",
-        "text": "重新开始游戏",
-        "effect": { "resetGame": true },
+        "id": "to_bedend",
+        "text": "前往结局",
         "record": "day1_midnight_scene_ghost_bad_ending_A",
-        "nextNode": "day1_morning_clinic"
+        "nextNode": "bedend"
       }
     ]
   },
   "day2_morning_clinic_ghost_aftermath_car_a": {
     "id": "day2_morning_clinic_ghost_aftermath_car_a",
-    "text": "清晨诊所开门，你的老爷车停在门口，引擎盖还带着余温。Ghost靠在车门上，兜帽遮住半张脸。\n\"{{ghost.aftermathCarA}}\n \"这和三年前我经手的一批炸弹一样，电源接口都在右侧。\"",
+    "text": "清晨诊所开门，你的老爷车停在门口，引擎盖还带着余温，看起来已经修好了。Ghost靠在车门上，兜帽遮住半张脸。\n\"三年前，我经手过一批和昨晚一样的爆炸物。",
 		"video": "/assets/video/场景四Ghost送车归来.mp4",
     "options": [
       {
@@ -342,7 +341,7 @@
       },
       {
         "id": "C",
-        "text": "C：\"下次他再来诊所，提醒他小心点吧，我也只能做这么多。\"",
+        "text": "\"下次他再来诊所，提醒他小心点吧，我也只能做这么多。\"",
         "effect": {},
         "record": "day2_night_clinic_leo_warning_C",
         "nextNode": "day3_morning_clinic_konig_rehab"
@@ -385,7 +384,7 @@
   },
   "day3_morning_clinic_ghsot_check_wound": {
     "id": "day3_morning_clinic_ghsot_check_wound",
-    "text": "Ghost喉结动了动，突然说：你能区分不同爆炸物造成的伤口吗？",
+    "text": "Ghost的睫毛动了动，突然说：你能区分不同爆炸物造成的伤口吗？",
     "options": [
       {
         "id": "reassure",
@@ -546,7 +545,7 @@
         "text": "【获得称号：独善其身】",
         "effect": {},
         "record": "day4_morning_clinic_reputation_drop_A",
-        "nextNode": "the_badend"
+        "nextNode": "badend"
       }
     ]
   },
@@ -574,7 +573,7 @@
         "text": "先留在我这，等合适的时机再出手。",
         "effect": {"hasReported": 1},
         "record": "day4_morning_clinic_leo_provide_evidence_C",
-        "nextNode": "day4_afternoon_clinic_health_inspection"
+        "nextNode": "day4_morning_clinic_ghost_confront_hawk"
       }
     ]
   },
@@ -587,7 +586,7 @@
         "text": "【得到称号：好心的莽撞人】",
         "effect": {},
         "record": "day4_morning_clinic_konig_convince_colleague_A",
-        "nextNode": "day11_midnight_clinic_ghost_critical_injury"
+        "nextNode": "limit_clue_konig"
       }
     ]
   },
@@ -715,7 +714,14 @@
   "bad_ending_poor_medical_skill": {
     "id": "bad_ending_poor_medical_skill",
     "text": "【由于你的医术不精，没能第一时间救下Ghost】\nHawk因故意杀人、策划爆炸、栽赃陷害等多项罪名被依法逮捕，但Ghost的死成了你一生无法弥补的遗憾。审计人员虽认可你提供的关键证据，却也对你的医术提出质疑，你因急救失误彻底失去了行医的信心，主动放弃了所有与医疗相关的工作，离开了黑鸦基地。Duke虽恢复了行医资格，重返手术室，却也时常为Ghost的死感到惋惜，你们再无交集。三年前的真相得以昭雪，但你永远失去了弥补遗憾的机会。",
-    "options": [],
+    "options": [
+      {
+        "id": "to_bedend",
+        "text": "前往结局",
+        "record": "bad_ending_poor_medical_skill_A",
+        "nextNode": "bedend"
+      }
+    ],
     "record": "bad_ending_poor_medical_skill"
   },
   "day6_afternoon_good_ending_choice": {
@@ -727,7 +733,7 @@
         "text": "拒绝",
         "effect": { "ghost": 20, "reputation": 5 },
         "record": "day6_afternoon_good_ending_choice_A",
-        "nextNode": "to_be_continued"
+        "nextNode": "good_ending_disagree_work"
       },
       {
         "id": "agree_work",
@@ -745,37 +751,32 @@
       {
         "id": "end",
         "text": "你在Ghost的面具上看到了好感度【100/100】的指示一闪而过，这又是谁的游戏呢？",
-        "effect": { "resetGame": true },
-        "record": "day15_afternoon_clinic_normal_ending_A",
-        "nextNode": "day1_morning_clinic"
+        "record": "good_ending_agree_work",
+        "nextNode": "to_be_continued"
       }
-    ],
-    "record": "good_ending_agree_work"
+    ]
   },
-  "to_be_continued": {
-    "id": "to_be_continued",
+  "good_ending_disagree_work": {
+    "id": "good_ending_disagree_work",
     "text": "你婉言拒绝了基地的邀请，笑着说道：“我更习惯自由行医，守护那些需要帮助的人，基地有Duke和其他优秀的医生，足够了。” 基地高层虽有惋惜，但也尊重你的选择。\nGhost康复后，十分支持你的决定，时常会来看望你，你们的关系愈发亲密。Duke重返手术室后，也经常与你交流医术，共同进步。",
     "options": [
       {
         "id": "end",
         "text": "【你的诊所似乎恢复了往日的平静，但故事还未结束，下一个出场的大兵是？...】",
-        "effect": { "resetGame": true },
-        "record": "day15_afternoon_clinic_normal_ending_A",
-        "nextNode": "day1_morning_clinic"
+        "record": "good_ending_disagree_work",
+        "nextNode": "to_be_continued"
       }
-    ],
-    "record": "to_be_continued"
+    ]
   },
   "bad_ending_no_duke": {
     "id": "bad_ending_no_duke",
     "text": "你们缺少了Duke这个关键人证，也没有他手中的原始治疗记录，你和Ghost手中的假伤情鉴定根本无法撼动Hawk。Hawk很快察觉你们的调查陷入僵局，趁机加快定罪步伐，当众宣布Ghost“失职罪成立”，将其移交军事法庭。你因“协助嫌犯调查”被查封诊所，Leo也被牵连辞退，Duke则一辈子困在后勤仓库，再也没能重返手术室。",
     "options": [
        {
-        "id": "bad_ending_no_duke",
-        "text": "【我们从不缺少重新开始的勇气】",
-        "effect": { "resetGame": true },
-        "record": "day15_afternoon_clinic_normal_ending_A",
-        "nextNode": "day1_morning_clinic"
+        "id": "to_bedend",
+        "text": "前往结局",
+        "record": "bad_ending_no_duke_A",
+        "nextNode": "bedend"
       }
     ],
     "record": "bad_ending_no_duke"
@@ -785,14 +786,62 @@
     "text": "你和Ghost仓促决定潜入巡查组办公室偷回文件，却忽略了Konig为保护证据设置的警戒。你们刚摸到存放文件的柜子旁，就被巡逻的巡查队员发现，动静惊动了正在附近部署的Hawk。Hawk趁机倒打一耙，嘶吼着向众人宣称：“Ghost伙同外人偷窃巡查证据，意图销毁自己失职的罪证！”  Konig虽想解释，却因你贸然行动百口莫辩。最终，巡查组认定你们“妨碍调查、意图串供”，Ghost被当场控制，直接移交军事法庭定罪。你因“协助嫌犯偷窃证据”被剥夺行医资格，诊所被彻底查封，Leo也因牵连被赶出基地。而那份关键文件，最终被Hawk销毁，三年前的真相彻底石沉大海，Ghost终身背负着失职的污名。",
     "options": [
       {
-        "id": "bad_end_no_purchase_record",
-        "text": "【我们从不缺少重新开始的勇气】",
-        "effect": { "resetGame": true },
-        "record": "day15_afternoon_clinic_normal_ending_A",
-        "nextNode": "day1_morning_clinic"
+        "id": "to_bedend",
+        "text": "前往结局",
+        "record": "bad_end_no_purchase_record_A",
+        "nextNode": "bedend"
       }
     ],
     "record": "bad_end_no_purchase_record"
-  }
+  },
 
+  "bedend": {
+    "id": "bedend",
+    "text": "很高兴你参与了这次旅行，但似乎故事没有按照你的想法发展。\n\n当前数值：Ghost 好感度：{$ghost}，Konig 好感度：{$konig}，Reputation：{$reputation}",
+    "options": [
+      {
+        "id": "restart",
+        "text": "回到第一幕（重置）",
+        "effect": { "resetGame": true },
+        "record": "bedend_restart",
+        "nextNode": "day1_morning_clinic"
+      }
+    ],
+    "record": "bedend"
+  },
+
+  "to_be_continued": {
+    "id": "to_be_continued",
+    "text": "未完待续。敬请期待！\n\n当前数值：Ghost 好感度：{$ghost}，Konig 好感度：{$konig}，Reputation：{$reputation}",
+    "options": [],
+    "record": "to_be_continued"
+  },
+
+  "badend": {
+    "id": "badend",
+    "text": "诊所陷入困境，事件未能得到妥善处理。你不得不关闭诊所，离开了基地，{$username}医生。",
+    "options": [
+      {
+        "id": "to_bedend",
+        "text": "前往结局",
+        "record": "badend_to_bedend",
+        "nextNode": "bedend"
+      }
+    ],
+    "record": "badend"
+  },
+
+  "limit_clue_konig": {
+    "id": "limit_clue_konig",
+    "text": "在一次深夜行动中，Ghost受到了严重伤害……但你已经失去探明真相的机会了，{$username}医生。",
+    "options": [
+      {
+        "id": "to_bedend",
+        "text": "前往结局",
+        "record": "limit_clue_konig_A",
+        "nextNode": "bedend"
+      }
+    ],
+    "record": "limit_clue_konig"
+  }
 }
