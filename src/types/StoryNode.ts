@@ -8,7 +8,7 @@ type CharacterList = typeof charactersData.characters;
 type CharacterId = CharacterList[number]["id"];
 
 // 可用于条件判断的字段类型 (角色好感度 + reputation)
-export type ConditionField = CharacterId | "reputation";
+export type ConditionField = CharacterId | "reputation" | "hasReported";
 
 // 基础条件：单个字段比较
 export interface BaseCondition {
@@ -40,6 +40,7 @@ export interface StoryOption {
     ghost?: number;
     konig?: number;
     reputation?: number;
+    hasReported?: number;
     resetGame?: boolean; // 重置游戏状态
   };
   record?: string; // 选择记录key

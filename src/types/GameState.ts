@@ -5,6 +5,7 @@ export interface GameState {
   username: string;
   favorability: CharacterState;
   reputation: number;
+  hasReported: number;
   currentNodeId: string;
   choiceRecords: Record<string, string>;
   videoToPlay?: string | null;

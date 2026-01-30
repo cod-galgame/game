@@ -15,5 +15,15 @@
       "name": "NPC",
       "initialFavorability": 0
     }
+  ],
+  "reputation":[
+    {
+      "initialValue": 0
+    }
+  ],
+  "hasReported":[
+    {
+      "initialValue": 0
+    }
   ]
 }

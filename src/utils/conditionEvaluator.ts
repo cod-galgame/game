@@ -7,6 +7,9 @@ function getFieldValue(field: string, gameState: GameState): number {
   if (field === "reputation") {
     return gameState.reputation;
   }
+  if (field === "hasReported") {
+    return gameState.hasReported;
+  }
   // 其他字段视为角色好感度
   return (
     gameState.favorability[field as keyof typeof gameState.favorability] || 0

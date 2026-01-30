@@ -10,6 +10,7 @@ export const useGameStateStore = defineStore("gameState", () => {
   const username = ref("");
   const favorability = ref<CharacterState>({ ghost: 0, konig: 0 });
   const reputation = ref(0);
+  const hasReported = ref(0);
   const currentNodeId = ref("day1_morning_clinic");
   const choiceRecords = ref<Record<string, string>>({});
   const videoToPlay = ref<string | null>(null);
@@ -28,6 +29,9 @@ export const useGameStateStore = defineStore("gameState", () => {
     reputation.value += delta;
   }
 
+  function updateHasReported(delta: number) {
+    hasReported.value += delta;
+  }
   function recordChoice(key: string, value: string) {
     choiceRecords.value[key] = value;
   }
@@ -48,6 +52,7 @@ export const useGameStateStore = defineStore("gameState", () => {
     username.value = "";
     favorability.value = { ghost: 0, konig: 0 };
     reputation.value = 0;
+    hasReported.value = 0;
     currentNodeId.value = "day1_morning_clinic";
     choiceRecords.value = {};
     videoToPlay.value = null;
@@ -58,6 +63,7 @@ export const useGameStateStore = defineStore("gameState", () => {
     username.value = state.username;
     favorability.value = { ...state.favorability };
     reputation.value = state.reputation;
+    hasReported.value = state.hasReported;
     currentNodeId.value = state.currentNodeId;
     choiceRecords.value = { ...state.choiceRecords };
     videoToPlay.value = null;
@@ -92,6 +98,9 @@ export const useGameStateStore = defineStore("gameState", () => {
       if (option.effect.reputation) {
         updateReputation(option.effect.reputation);
       }
+      if (option.effect.hasReported) {
+        updateHasReported(option.effect.hasReported);
+      }
     }
     
     const storyEngine = useStoryEngineStore();
@@ -102,6 +111,7 @@ export const useGameStateStore = defineStore("gameState", () => {
         username: username.value,
         favorability: favorability.value,
         reputation: reputation.value,
+        hasReported: hasReported.value,
         currentNodeId: currentNodeId.value,
         choiceRecords: choiceRecords.value,
       };
@@ -122,6 +132,7 @@ export const useGameStateStore = defineStore("gameState", () => {
     username,
     favorability,
     reputation,
+    hasReported,
     currentNodeId,
     choiceRecords,
     videoToPlay,
@@ -129,6 +140,7 @@ export const useGameStateStore = defineStore("gameState", () => {
     setUsername,
     updateFavorability,
     updateReputation,
+    updateHasReported,
     recordChoice,
     setCurrentNode,
     setVideoToPlay,
