@@ -78,6 +78,7 @@ jobs:
         run: |
           cd android
           ./gradlew assembleRelease --no-daemon
+          ls -lh android/app/build/outputs/apk/release/
 
       - name: Sign and align APK (if keystore provided)
         env:
@@ -91,6 +92,7 @@ jobs:
           BUILD_TOOLS=$ANDROID_SDK_ROOT/build-tools/${ANDROID_BUILD_TOOLS_VERSION}
           echo "$ANDROID_KEYSTORE" | base64 -d > release-keystore.jks
           $BUILD_TOOLS/zipalign -v -p 4 "$APK" "$OUT"
+          ls -lh android/app/build/outputs/apk/release/
           $BUILD_TOOLS/apksigner sign --ks release-keystore.jks --ks-key-alias $ANDROID_KEY_ALIAS --ks-pass pass:$ANDROID_KEYSTORE_PASSWORD --key-pass pass:$ANDROID_KEY_PASSWORD "$OUT"
 
       - name: Upload APK artifact
