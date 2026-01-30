@@ -14,18 +14,19 @@ jobs:
       APP_NAME: "Cod Game"
       ANDROID_BUILD_TOOLS_VERSION: '33.0.2'
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-
-      - name: Enable pnpm (Corepack)
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
+          node-version: '22'
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -45,26 +46,13 @@ jobs:
           api-level: 33
           build-tools: ${{ env.ANDROID_BUILD_TOOLS_VERSION }}
 
-      - name: Initialize Capacitor & add Android (if missing)
-        run: |
-          if [ ! -d android ]; then
-            # If a TypeScript config exists, `npx cap init` fails (expects JSON). In that case only add the Android platform.
-            if [ -f capacitor.config.ts ] || [ -f capacitor.config.mjs ]; then
-              echo "Found capacitor config file; running 'npx cap add android' only"
-              npx cap add android
-            else
-              npx cap init "$APP_NAME" "$APP_ID" --web-dir dist
-              npx cap add android
-            fi
-          fi
-
-      - name: Copy web assets into Android project
-        run: npx cap sync android
+      - name: Initialize Capacitor
+        run: pnpm run cap:add-android
 
       - name: Build Release APK
         run: |
           cd android
-          ./gradlew assembleRelease --no-daemon -Porg.gradle.jvmargs='-Xmx1536m'
+          ./gradlew assembleRelease --no-daemon
 
       - name: Sign and align APK (if keystore provided)
         env:
