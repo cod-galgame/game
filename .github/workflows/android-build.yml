@@ -41,13 +41,20 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
+      
+      - name: Cache Android build tools
+        uses: actions/cache@v3
         with:
-          api-level: 33
-          build-tools: ${{ env.ANDROID_BUILD_TOOLS_VERSION }}
+          path: $ANDROID_SDK_ROOT/build-tools/${ANDROID_BUILD_TOOLS_VERSION}
+          key: android-build-tools-${{ runner.os }}-${{ env.ANDROID_BUILD_TOOLS_VERSION }}
+          restore-keys: |
+            android-build-tools-${{ runner.os }}-${{ env.ANDROID_BUILD_TOOLS_VERSION }}
+
+      - name: Setup build tools
+        run: sdkmanager "build-tools;${{ env.ANDROID_BUILD_TOOLS_VERSION }}"
 
       - name: Initialize Capacitor
         run: pnpm run cap:add-android
-
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
