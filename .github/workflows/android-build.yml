@@ -33,7 +33,6 @@ jobs:
 
       - name: Build web assets
         run: pnpm run build:web
-
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -48,6 +47,23 @@ jobs:
 
       - name: Initialize Capacitor
         run: pnpm run cap:add-android
+
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      - name: Cache Android build cache
+        uses: actions/cache@v3
+        with:
+          path: android/.gradle
+          key: android-gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            android-gradle-${{ runner.os }}-
 
       - name: Build Release APK
         run: |
