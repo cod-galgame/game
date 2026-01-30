@@ -45,7 +45,7 @@ jobs:
       - name: Cache Android build tools
         uses: actions/cache@v3
         with:
-          path: $ANDROID_SDK_ROOT/build-tools/${ANDROID_BUILD_TOOLS_VERSION}
+          path: /usr/local/lib/android/sdk/build-tools/${ANDROID_BUILD_TOOLS_VERSION}
           key: android-build-tools-${{ runner.os }}-${{ env.ANDROID_BUILD_TOOLS_VERSION }}
           restore-keys: |
             android-build-tools-${{ runner.os }}-${{ env.ANDROID_BUILD_TOOLS_VERSION }}
