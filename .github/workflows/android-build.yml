@@ -1,0 +1,87 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    env:
+      APP_ID: com.codgalgame.game
+      APP_NAME: "Cod Game"
+      ANDROID_BUILD_TOOLS_VERSION: '33.0.2'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Enable pnpm (Corepack)
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build web assets
+        run: pnpm run build:web
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          api-level: 33
+          build-tools: ${{ env.ANDROID_BUILD_TOOLS_VERSION }}
+
+      - name: Initialize Capacitor & add Android (if missing)
+        run: |
+          if [ ! -d android ]; then
+            # If a TypeScript config exists, `npx cap init` fails (expects JSON). In that case only add the Android platform.
+            if [ -f capacitor.config.ts ] || [ -f capacitor.config.mjs ]; then
+              echo "Found capacitor config file; running 'npx cap add android' only"
+              npx cap add android
+            else
+              npx cap init "$APP_NAME" "$APP_ID" --web-dir dist
+              npx cap add android
+            fi
+          fi
+
+      - name: Copy web assets into Android project
+        run: npx cap sync android
+
+      - name: Build Release APK
+        run: |
+          cd android
+          ./gradlew assembleRelease --no-daemon -Porg.gradle.jvmargs='-Xmx1536m'
+
+      - name: Sign and align APK (if keystore provided)
+        env:
+          ANDROID_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          APK=android/app/build/outputs/apk/release/app-release-unsigned.apk
+          OUT=android/app/build/outputs/apk/release/app-release.apk
+          BUILD_TOOLS=$ANDROID_SDK_ROOT/build-tools/${ANDROID_BUILD_TOOLS_VERSION}
+          echo "$ANDROID_KEYSTORE" | base64 -d > release-keystore.jks
+          $BUILD_TOOLS/zipalign -v -p 4 "$APK" "$OUT"
+          $BUILD_TOOLS/apksigner sign --ks release-keystore.jks --ks-key-alias $ANDROID_KEY_ALIAS --ks-pass pass:$ANDROID_KEYSTORE_PASSWORD --key-pass pass:$ANDROID_KEY_PASSWORD "$OUT"
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/app-release.apk

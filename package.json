@@ -6,9 +6,17 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:web": "vite build",
     "check": "tsc --noEmit",
     "preview": "vite preview",
-    "format": "prettier --write src"
+    "format": "prettier --write src",
+    "android:verify-assets": "node scripts/verify_assets.js",
+    "android:ci-build": "pnpm build && pnpm run android:verify-assets",
+    "cap:init": "npx cap init \"Cod Game\" com.codgalgame.game --web-dir dist",
+    "cap:add-android": "npx cap add android",
+    "cap:sync": "npx cap sync",
+    "cap:copy": "npx cap copy android",
+    "cap:open": "npx cap open android"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +26,9 @@
     "vue": "^3.4.0"
   },
   "devDependencies": {
+    "@capacitor/android": "^8.0.2",
+    "@capacitor/cli": "^5.0.0",
+    "@capacitor/core": "^5.0.0",
     "@types/node": "^25.0.7",
     "@vitejs/plugin-vue": "^6.0.3",
     "@vue/compiler-sfc": "^3.5.26",
