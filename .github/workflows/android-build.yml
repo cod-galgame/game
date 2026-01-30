@@ -54,7 +54,9 @@ jobs:
         run: sdkmanager "build-tools;${{ env.ANDROID_BUILD_TOOLS_VERSION }}"
 
       - name: Initialize Capacitor
-        run: pnpm run cap:add-android
+        run: |
+          pnpm run cap:add-android 
+          pnpm run cap:copy
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
